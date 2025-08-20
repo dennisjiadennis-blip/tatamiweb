@@ -98,7 +98,7 @@ export default function SignInPage() {
             {/* Magic Link 表单 */}
             <form onSubmit={handleEmailSignIn} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">{t('auth.email')}</Label>
+                <Label htmlFor="email">{t('auth.email.label')}</Label>
                 <Input
                   id="email"
                   type="email"

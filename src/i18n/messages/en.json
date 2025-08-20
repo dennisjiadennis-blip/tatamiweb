@@ -155,7 +155,42 @@
     "magicLink": "Send magic link",
     "emailSent": "Check your email for a magic link",
     "welcome": "Welcome to Tatami Labs",
-    "welcomeBack": "Welcome back"
+    "welcomeBack": "Welcome back",
+    "or": "or",
+    "and": "and",
+    "back-home": "Back to Home",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email address"
+    },
+    "terms": {
+      "text": "By continuing, you agree to our",
+      "link": "Terms of Service"
+    },
+    "privacy": {
+      "link": "Privacy Policy"
+    },
+    "signin": {
+      "title": "Sign In",
+      "description": "Choose your preferred sign in method",
+      "google": "Continue with Google",
+      "email": "Continue with Email",
+      "emailPlaceholder": "Enter your email address",
+      "emailButton": "Send magic link",
+      "magic-link": "Send magic link",
+      "emailSent": "Check your email for a magic link",
+      "error": "Sign in failed. Please try again."
+    },
+    "verifyRequest": {
+      "title": "Check your email",
+      "description": "A sign in link has been sent to your email address.",
+      "emailSent": "Email sent to {email}"
+    },
+    "error": {
+      "title": "Authentication Error",
+      "description": "An error occurred during authentication.",
+      "backToSignIn": "Back to sign in"
+    }
   },
   "forms": {
     "name": "Name",

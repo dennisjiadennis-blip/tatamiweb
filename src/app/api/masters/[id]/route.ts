@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 
 interface RouteContext {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export async function GET(request: NextRequest, { params }: RouteContext) {
   try {
-    const { id } = params
+    const { id } = await params
 
     const master = await db.master.findUnique({
       where: { 

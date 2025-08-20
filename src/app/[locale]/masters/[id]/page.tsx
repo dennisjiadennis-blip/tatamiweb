@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import { notFound } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -70,7 +70,8 @@ interface MasterPageResponse {
   }>
 }
 
-export default function MasterPage({ params }: { params: { id: string } }) {
+export default function MasterPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params)
   const [data, setData] = useState<MasterPageResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -82,7 +83,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchMaster = async () => {
       try {
-        const response = await fetch(`/api/masters/${params.id}`)
+        const response = await fetch(`/api/masters/${resolvedParams.id}`)
         const result = await response.json()
         
         if (result.success) {
@@ -100,7 +101,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
     }
 
     fetchMaster()
-  }, [params.id])
+  }, [resolvedParams.id])
 
   if (loading) {
     return (
@@ -131,7 +132,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.nameJa || master.name
       case 'zh-TW':
-        return master.nameEn || master.name
+        return master.name || master.nameEn  // 修复：优先显示中文名称
       default:
         return master.nameEn || master.name
     }
@@ -142,7 +143,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.titleJa || master.title
       case 'zh-TW':
-        return master.titleEn || master.title
+        return master.title || master.titleEn  // 修复：优先显示中文标题
       default:
         return master.titleEn || master.title
     }
@@ -153,7 +154,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.descriptionJa || master.description
       case 'zh-TW':
-        return master.descriptionEn || master.description
+        return master.description || master.descriptionEn  // 修复：优先显示中文描述
       default:
         return master.descriptionEn || master.description
     }
@@ -164,7 +165,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.bioJa || master.bio
       case 'zh-TW':
-        return master.bioEn || master.bio
+        return master.bio || master.bioEn  // 修复：优先显示中文传记
       default:
         return master.bioEn || master.bio
     }
@@ -175,7 +176,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.philosophyJa || master.philosophy
       case 'zh-TW':
-        return master.philosophyEn || master.philosophy
+        return master.philosophy || master.philosophyEn  // 修复：优先显示中文理念
       default:
         return master.philosophyEn || master.philosophy
     }
@@ -186,7 +187,7 @@ export default function MasterPage({ params }: { params: { id: string } }) {
       case 'ja':
         return master.locationJa || master.location
       case 'zh-TW':
-        return master.locationEn || master.location
+        return master.location || master.locationEn  // 修复：优先显示中文位置
       default:
         return master.locationEn || master.location
     }

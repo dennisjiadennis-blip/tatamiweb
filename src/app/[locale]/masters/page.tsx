@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useParams } from 'next/navigation'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
@@ -49,8 +50,15 @@ export default function MastersPage() {
   const [page, setPage] = useState(1)
   const [pagination, setPagination] = useState<MastersResponse['pagination'] | null>(null)
   
-  const locale = useCurrentLocale()
+  const params = useParams()
+  const localeFromHook = useCurrentLocale()
+  const localeFromParams = params.locale as string
+  
+  // Use params locale as fallback if hook fails
+  const locale = localeFromHook || localeFromParams || 'en'
   const t = useTranslations()
+  
+  // Ensure locale is properly detected from URL params as fallback
 
   const fetchMasters = async (searchTerm = '', filterType = 'all', pageNum = 1) => {
     setLoading(true)
@@ -114,9 +122,20 @@ export default function MastersPage() {
         en: 'With Trips',
         'zh-TW': '有旅程',
         ja: '旅程あり'
+      },
+      noMastersFound: {
+        en: 'No masters found matching your criteria.',
+        'zh-TW': '沒有找到符合條件的大師。',
+        ja: '条件に一致する名匠が見つかりません。'
+      },
+      clearFilters: {
+        en: 'Clear Filters',
+        'zh-TW': '清除篩選',
+        ja: 'フィルターをクリア'
       }
     }
-    return texts[key as keyof typeof texts]?.[locale as keyof typeof texts.title] || texts[key as keyof typeof texts]?.en
+    const result = texts[key as keyof typeof texts]?.[locale as keyof typeof texts.title] || texts[key as keyof typeof texts]?.en
+    return result
   }
 
   return (
@@ -196,8 +215,22 @@ export default function MastersPage() {
                   className="master-card-image"
                 />
                 <div className="master-card-overlay">
-                  <h3 className="master-card-name">{master.name}</h3>
-                  <p className="master-card-specialty">{master.title}</p>
+                  <h3 className="master-card-name">
+                    {locale === 'ja' 
+                      ? (master.nameJa || master.name)
+                      : locale === 'zh-TW'
+                      ? (master.name || master.nameEn)
+                      : (master.nameEn || master.name)
+                    }
+                  </h3>
+                  <p className="master-card-specialty">
+                    {locale === 'ja'
+                      ? (master.titleJa || master.title)
+                      : locale === 'zh-TW'
+                      ? (master.title || master.titleEn)
+                      : (master.titleEn || master.title)
+                    }
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -217,7 +250,7 @@ export default function MastersPage() {
               color: 'var(--color-text-secondary)',
               marginBottom: 'calc(var(--base-spacing) * 2)'
             }}>
-              No masters found matching your criteria.
+              {getLocalizedText('noMastersFound')}
             </p>
             <button
               onClick={() => {
@@ -238,7 +271,7 @@ export default function MastersPage() {
                 transition: 'all var(--duration-fast) var(--ease-suspense)'
               }}
             >
-              Reset Filters
+              {getLocalizedText('clearFilters')}
             </button>
           </motion.div>
         )}

@@ -6,7 +6,9 @@ import { useState } from 'react'
 import { useCurrentLocale } from '@/i18n/hooks'
 
 export function useAuth() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession({
+    required: false,  // 不强制要求登录
+  })
   const router = useRouter()
   const locale = useCurrentLocale()
   const [isLoading, setIsLoading] = useState(false)

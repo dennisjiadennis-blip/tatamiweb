@@ -155,7 +155,42 @@
     "magicLink": "マジックリンクを送信",
     "emailSent": "マジックリンクをメールで確認してください",
     "welcome": "畳ラボへようこそ",
-    "welcomeBack": "お帰りなさい"
+    "welcomeBack": "お帰りなさい",
+    "or": "または",
+    "and": "と",
+    "back-home": "ホームに戻る",
+    "email": {
+      "label": "メールアドレス",
+      "placeholder": "メールアドレスを入力してください"
+    },
+    "terms": {
+      "text": "続行することで、",
+      "link": "利用規約"
+    },
+    "privacy": {
+      "link": "プライバシーポリシー"
+    },
+    "signin": {
+      "title": "サインイン",
+      "description": "お好みのサインイン方法を選択してください",
+      "google": "Googleで続ける",
+      "email": "メールで続ける",
+      "emailPlaceholder": "メールアドレスを入力してください",
+      "emailButton": "マジックリンクを送信",
+      "magic-link": "マジックリンクを送信",
+      "emailSent": "マジックリンクをメールで確認してください",
+      "error": "サインインに失敗しました。もう一度お試しください。"
+    },
+    "verifyRequest": {
+      "title": "メールを確認してください",
+      "description": "サインインリンクがメールアドレスに送信されました。",
+      "emailSent": "{email} にメールを送信しました"
+    },
+    "error": {
+      "title": "認証エラー",
+      "description": "認証中にエラーが発生しました。",
+      "backToSignIn": "サインインに戻る"
+    }
   },
   "forms": {
     "name": "名前",

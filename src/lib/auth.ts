@@ -238,5 +238,23 @@ export const authOptions: NextAuthOptions = {
   },
 
   // 调试模式（仅在开发环境）
-  debug: process.env.NODE_ENV === 'development',
+  debug: false, // 关闭调试模式以减少日志
+  
+  // 日志配置
+  logger: {
+    error(code, metadata) {
+      // 完全禁用所有客户端错误日志，只记录服务器端严重错误
+      if (typeof window === 'undefined' && 
+          code !== 'CLIENT_FETCH_ERROR' && 
+          !code.toString().includes('Aborted') &&
+          !code.toString().includes('Not authenticated')) {
+        console.error(`NextAuth Server Error [${code}]:`, metadata)
+      }
+    },
+    warn: () => {}, // 禁用警告日志
+    debug: () => {}, // 禁用调试日志
+  },
+  
+  // 禁用NextAuth的默认客户端错误处理
+  skipCSRFCheck: true,
 }

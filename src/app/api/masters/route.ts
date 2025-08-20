@@ -39,7 +39,6 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
         orderBy: [
-          { featuredOrder: 'asc' },
           { createdAt: 'desc' }
         ],
         select: {
@@ -50,14 +49,9 @@ export async function GET(request: NextRequest) {
           title: true,
           titleEn: true,
           titleJa: true,
-          description: true,
           heroImage: true,
           profileVideo: true,
           hasTripProduct: true,
-          location: true,
-          locationEn: true,
-          locationJa: true,
-          tags: true,
           _count: {
             select: {
               interests: true

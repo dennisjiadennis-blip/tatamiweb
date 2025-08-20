@@ -155,7 +155,42 @@
     "magicLink": "發送魔法連結",
     "emailSent": "請查看您的郵箱中的魔法連結",
     "welcome": "歡迎來到榻榻米實驗室",
-    "welcomeBack": "歡迎回來"
+    "welcomeBack": "歡迎回來",
+    "or": "或",
+    "and": "和",
+    "back-home": "返回首頁",
+    "email": {
+      "label": "電子郵件",
+      "placeholder": "輸入您的電子郵件地址"
+    },
+    "terms": {
+      "text": "繼續即表示您同意我們的",
+      "link": "服務條款"
+    },
+    "privacy": {
+      "link": "隱私政策"
+    },
+    "signin": {
+      "title": "登入",
+      "description": "選擇您偏好的登入方式",
+      "google": "使用 Google 繼續",
+      "email": "使用電子郵件繼續",
+      "emailPlaceholder": "輸入您的電子郵件地址",
+      "emailButton": "發送魔法連結",
+      "magic-link": "發送魔法連結",
+      "emailSent": "請查看您的郵箱中的魔法連結",
+      "error": "登入失敗，請重試。"
+    },
+    "verifyRequest": {
+      "title": "檢查您的電子郵件",
+      "description": "登入連結已發送到您的電子郵件地址。",
+      "emailSent": "郵件已發送至 {email}"
+    },
+    "error": {
+      "title": "認證錯誤",
+      "description": "認證過程中發生錯誤。",
+      "backToSignIn": "返回登入"
+    }
   },
   "forms": {
     "name": "姓名",

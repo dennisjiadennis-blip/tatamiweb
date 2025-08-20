@@ -537,6 +537,94 @@ button, input, select, textarea {
   font-family: var(--font-family-body);
 }
 
+/* === CINEMATIC INTRO STYLES === */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Use vh for full viewport height */
+  z-index: 9999;
+  background-color: #1a1a1a; /* Fallback color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out; /* The fade-out transition */
+}
+
+#splash-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Ensures video covers the screen while maintaining aspect ratio */
+  z-index: 1;
+  filter: brightness(0.7); /* Slightly darken to help text stand out */
+}
+
+/* Skip button styles */
+.skip-intro-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  font-family: var(--font-family-heading);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-parchment);
+  background-color: rgba(26, 26, 26, 0.7);
+  border: 1px solid rgba(244, 241, 234, 0.3);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-suspense);
+  backdrop-filter: blur(8px);
+}
+
+.skip-intro-button:hover {
+  background-color: rgba(227, 66, 52, 0.8);
+  border-color: var(--color-vermilion);
+  color: var(--color-parchment);
+  transform: translateY(-1px);
+}
+
+.splash-text-container {
+  text-align: center;
+}
+
+.splash-text {
+  font-family: var(--font-family-heading); /* Use Oswald heading font to match homepage */
+  font-size: clamp(3rem, 8vw, 5.5rem); /* Match hero title size */
+  color: var(--color-parchment);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(0,0,0,0.5); /* Match hero title shadow */
+  opacity: 0; /* Initially hidden */
+  animation: fadeInText 3s ease-in 1.5s forwards; /* Delay slightly more */
+  z-index: 5;
+  position: relative;
+}
+
+/* Keyframe animation for the text fade-in */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* This class will be added by JavaScript to hide the splash screen */
+#splash-screen.hidden {
+  opacity: 0;
+  pointer-events: none; /* Allows clicks to go through to the content behind it */
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .hero-title {

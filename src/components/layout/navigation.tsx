@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
-import { UserMenu } from '@/components/auth/user-menu'
+import { GuestFriendlyMenu } from '@/components/auth/guest-friendly-menu'
 import { LanguageSwitcher } from '@/components/i18n/language-switcher'
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
 
@@ -16,6 +16,7 @@ export function Navigation() {
 
   const navItems = [
     { href: `/${locale}`, label: t('navigation.home') },
+    { href: `/${locale}/masters`, label: t('navigation.masters') },
     { href: `/${locale}/philosophy`, label: t('navigation.philosophy') },
     { href: `/${locale}/content`, label: t('navigation.content') },
     { href: `/${locale}/community`, label: t('navigation.community') },
@@ -101,7 +102,7 @@ export function Navigation() {
               opacity: 0.8,
               transition: 'opacity var(--duration-fast) var(--ease-suspense)' 
             }}>
-              <UserMenu />
+              <GuestFriendlyMenu />
             </div>
             
             {/* Mobile Menu Button */}
