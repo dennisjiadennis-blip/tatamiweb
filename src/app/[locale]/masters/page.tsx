@@ -92,146 +92,203 @@ export default function MastersPage() {
     setPage(1)
   }
 
+  // Get localized text for the new design
+  const getLocalizedText = (key: string) => {
+    const texts = {
+      title: {
+        en: 'Intelligence Dossier',
+        'zh-TW': '情報檔案',
+        ja: 'インテリジェンス・ドシエ'
+      },
+      subtitle: {
+        en: 'Discover the masters who will guide your journey',
+        'zh-TW': '發現將引導您旅程的大師',
+        ja: 'あなたの旅を導く名匠を発見する'
+      },
+      allMasters: {
+        en: 'All Masters',
+        'zh-TW': '所有大師',
+        ja: '全ての名匠'
+      },
+      withTrips: {
+        en: 'With Trips',
+        'zh-TW': '有旅程',
+        ja: '旅程あり'
+      }
+    }
+    return texts[key as keyof typeof texts]?.[locale as keyof typeof texts.title] || texts[key as keyof typeof texts]?.en
+  }
+
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* 页面标题 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl md:text-5xl font-light mb-4">
-          {t('masters.title')}
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          {t('masters.description')}
-        </p>
-      </motion.div>
-
-      {/* 搜索和过滤器 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="flex flex-col md:flex-row gap-4 mb-8"
-      >
-        <div className="relative flex-1">
-          <Icons.search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder={t('masters.searchPlaceholder')}
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-        
-        <div className="flex gap-2">
-          <Button
-            variant={filter === 'all' ? 'default' : 'outline'}
-            onClick={() => handleFilterChange('all')}
-            size="sm"
-          >
-            {t('masters.filters.all')}
-          </Button>
-          <Button
-            variant={filter === 'trips' ? 'default' : 'outline'}
-            onClick={() => handleFilterChange('trips')}
-            size="sm"
-          >
-            {t('masters.filters.trips')}
-          </Button>
-          <Button
-            variant={filter === 'conversations' ? 'default' : 'outline'}
-            onClick={() => handleFilterChange('conversations')}
-            size="sm"
-          >
-            {t('masters.filters.conversations')}
-          </Button>
-        </div>
-      </motion.div>
-
-      {/* 加载状态 */}
-      {loading && (
-        <div className="flex justify-center items-center py-12">
-          <Icons.spinner className="h-8 w-8 animate-spin" />
-        </div>
-      )}
-
-      {/* 达人卡片网格 */}
-      {!loading && (
+    <div style={{ backgroundColor: 'var(--color-charcoal)', minHeight: '100vh', color: 'var(--color-text-primary)' }}>
+      <div className="container mx-auto px-4 py-16" style={{ maxWidth: 'var(--container-width)' }}>
+        {/* Page Title - Dramatic Typography */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          {masters.map((master, index) => (
-            <motion.div
-              key={master.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
-              <MasterCard master={master} locale={locale} />
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
-
-      {/* 空状态 */}
-      {!loading && masters.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center py-12"
-        >
-          <p className="text-lg text-muted-foreground mb-4">
-            {t('masters.noMastersFound')}
+          <h1 style={{
+            fontFamily: 'var(--font-family-heading)',
+            fontSize: 'clamp(3rem, 8vw, 5rem)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            fontWeight: 700,
+            color: 'var(--color-parchment)',
+            marginBottom: 'calc(var(--base-spacing) * 2)',
+            textShadow: '0 0 10px rgba(0,0,0,0.5)'
+          }}>
+            {getLocalizedText('title')}
+          </h1>
+          <p style={{
+            fontFamily: 'var(--font-family-body)',
+            fontSize: '1.2rem',
+            color: 'var(--color-text-secondary)',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: 1.7
+          }}>
+            {getLocalizedText('subtitle')}
           </p>
-          <Button
-            variant="outline"
-            onClick={() => {
-              setSearch('')
-              setFilter('all')
-              setPage(1)
+        </motion.div>
+
+        {/* Minimalist Filter Controls */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center gap-8 mb-16"
+        >
+          <button
+            onClick={() => handleFilterChange('all')}
+            style={{
+              fontFamily: 'var(--font-family-heading)',
+              fontSize: '1rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.2em',
+              color: filter === 'all' ? 'var(--color-vermilion)' : 'var(--color-text-secondary)',
+              backgroundColor: 'transparent',
+              border: filter === 'all' ? '1px solid var(--color-vermilion)' : '1px solid transparent',
+              padding: 'calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5)',
+              cursor: 'pointer',
+              transition: 'all var(--duration-fast) var(--ease-suspense)'
             }}
           >
-            {t('masters.clearFilters')}
-          </Button>
+            {getLocalizedText('allMasters')}
+          </button>
+          <button
+            onClick={() => handleFilterChange('trips')}
+            style={{
+              fontFamily: 'var(--font-family-heading)',
+              fontSize: '1rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.2em',
+              color: filter === 'trips' ? 'var(--color-vermilion)' : 'var(--color-text-secondary)',
+              backgroundColor: 'transparent',
+              border: filter === 'trips' ? '1px solid var(--color-vermilion)' : '1px solid transparent',
+              padding: 'calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5)',
+              cursor: 'pointer',
+              transition: 'all var(--duration-fast) var(--ease-suspense)'
+            }}
+          >
+            {getLocalizedText('withTrips')}
+          </button>
         </motion.div>
-      )}
 
-      {/* 分页 */}
-      {!loading && pagination && pagination.totalPages > 1 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex justify-center items-center gap-2"
-        >
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setPage(page - 1)}
-            disabled={!pagination.hasPrevPage}
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-16">
+            <div style={{
+              width: '2rem',
+              height: '2rem',
+              border: '2px solid var(--color-text-secondary)',
+              borderTop: '2px solid var(--color-vermilion)',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }}>
+            </div>
+          </div>
+        )}
+
+        {/* Masters Grid - Intelligence Dossier Layout */}
+        {!loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="masters-grid"
           >
-            {t('masters.pagination.previous')}
-          </Button>
-          
-          <span className="px-4 py-2 text-sm text-muted-foreground">
-            {t('masters.pagination.pageOf', { page: pagination.page, totalPages: pagination.totalPages })}
-          </span>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setPage(page + 1)}
-            disabled={!pagination.hasNextPage}
+            {masters.map((master, index) => (
+              <motion.div
+                key={master.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="master-card"
+                onClick={() => window.location.href = `/${locale}/masters/${master.id}`}
+              >
+                <img
+                  src={master.heroImage || '/placeholder-master.jpg'}
+                  alt={master.name}
+                  className="master-card-image"
+                />
+                <div className="master-card-overlay">
+                  <h3 className="master-card-name">{master.name}</h3>
+                  <p className="master-card-specialty">{master.title}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Empty State */}
+        {!loading && masters.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
           >
-            {t('masters.pagination.next')}
-          </Button>
-        </motion.div>
-      )}
+            <p style={{
+              fontFamily: 'var(--font-family-body)',
+              fontSize: '1.1rem',
+              color: 'var(--color-text-secondary)',
+              marginBottom: 'calc(var(--base-spacing) * 2)'
+            }}>
+              No masters found matching your criteria.
+            </p>
+            <button
+              onClick={() => {
+                setSearch('')
+                setFilter('all')
+                setPage(1)
+              }}
+              style={{
+                fontFamily: 'var(--font-family-heading)',
+                fontSize: '1rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em',
+                color: 'var(--color-vermilion)',
+                backgroundColor: 'transparent',
+                border: '1px solid var(--color-vermilion)',
+                padding: 'var(--base-spacing) calc(var(--base-spacing) * 2)',
+                cursor: 'pointer',
+                transition: 'all var(--duration-fast) var(--ease-suspense)'
+              }}
+            >
+              Reset Filters
+            </button>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Add CSS for spinning animation */}
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   )
 }

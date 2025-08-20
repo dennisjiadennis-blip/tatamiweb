@@ -1,73 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* === HITCHCOCK/SAUL BASS INSPIRED DESIGN SYSTEM === */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Tatami Labs 设计令牌 (Design Tokens) */
+/* === GLOBAL STYLES & DESIGN TOKENS === */
 :root {
-  /* 色彩系统 */
-  --color-dark-gray: #1a1a1a;
-  --color-black: #000000;
-  --color-dark-blue: #1e3a8a;
-  --color-pure-red: #dc2626;
-  --color-surface: #fafafa;
-  --color-background: #ffffff;
-  --color-text-primary: var(--color-black);
-  --color-text-secondary: var(--color-dark-gray);
+  /* Color Palette - Cinematic Drama */
+  --color-charcoal: #1a1a1a; /* Deeper than pure black */
+  --color-parchment: #f4f1ea; /* A warm, aged off-white */
+  --color-vermilion: #E34234;   /* A powerful, dramatic red-orange */
+  --color-text-primary: var(--color-parchment);
+  --color-text-secondary: rgba(244, 241, 234, 0.7); /* Muted text */
 
-  /* 字体系统 */
-  --font-sans: 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  /* Typography - Dramatic & Expressive */
+  --font-family-heading: 'Oswald', sans-serif; /* Bold, condensed sans-serif */
+  --font-family-body: 'Lora', serif; /* Highly readable, clean serif */
 
-  /* 间距系统 (8px基准) */
-  --spacing-xs: 8px;
-  --spacing-sm: 16px;
-  --spacing-md: 24px;
-  --spacing-lg: 32px;
-  --spacing-xl: 48px;
+  /* Spacing & Layout - Psychological Space */
+  --container-width: 1100px;
+  --base-spacing: 1rem;
 
-  /* 动画系统 */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
+  /* Animation System - Subtle Tension */
+  --duration-fast: 300ms;
+  --duration-normal: 600ms;
+  --duration-slow: 900ms;
   --duration-cinematic: 1500ms;
   
-  --ease-in: cubic-bezier(0.4, 0.0, 1, 1);
-  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
-  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-tension: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-suspense: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-reveal: cubic-bezier(0.0, 0.0, 0.2, 1);
 
-  --background: var(--color-background);
+  --background: var(--color-charcoal);
   --foreground: var(--color-text-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base Body Styles - Cinematic Foundation */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-serif);
-  font-feature-settings: "rlig" 1, "calt" 1;
+  background-color: var(--color-charcoal);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-/* 标题使用无衬线字体 */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  letter-spacing: -0.025em;
+/* Global Heading Styles - Typographic Drama */
+h1, h2, h3, h4 {
+  font-family: var(--font-family-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
 }
 
-/* 按钮和交互元素使用无衬线字体 */
+/* Link & Interactive Styles - Suspenseful Interactions */
+a {
+  color: var(--color-vermilion);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--duration-fast) var(--ease-suspense);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-vermilion);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform var(--duration-fast) var(--ease-reveal);
+}
+
+a:hover {
+  color: var(--color-parchment);
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Button and Interactive Elements */
 button, input, select, textarea {
-  font-family: var(--font-sans);
+  font-family: var(--font-family-body);
 }
 
 /* 核心按钮组件 - Editorial Minimalism */
@@ -279,16 +301,186 @@ button, input, select, textarea {
   }
 }
 
-/* 响应式视频 */
+/* === HITCHCOCK/SAUL BASS PAGE STYLES === */
+
+/* Homepage - The Opening Scene */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 0 var(--base-spacing);
+  background-color: var(--color-charcoal);
+  /* Add background texture/video here */
+}
+
+.hero-title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(3.5rem, 10vw, 7rem); /* Responsive font size */
+  color: var(--color-parchment);
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.1;
+  /* Add a slight text-shadow for depth */
+  text-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: var(--base-spacing) 0 calc(var(--base-spacing) * 3);
+  line-height: 1.7;
+}
+
+.hero-cta {
+  font-family: var(--font-family-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-vermilion);
+  background-color: transparent;
+  border: 1px solid var(--color-vermilion);
+  padding: var(--base-spacing) calc(var(--base-spacing) * 2);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-suspense), 
+              color var(--duration-fast) var(--ease-suspense);
+}
+
+.hero-cta:hover {
+  background-color: var(--color-vermilion);
+  color: var(--color-charcoal);
+}
+
+/* Masters Page - Intelligence Dossier */
+.masters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: calc(var(--base-spacing) * 3);
+  padding: calc(var(--base-spacing) * 4) 0;
+}
+
+.master-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4; /* Portrait orientation */
+  cursor: pointer;
+}
+
+.master-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: transform var(--duration-normal) var(--ease-tension);
+}
+
+.master-card:hover .master-card-image {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.master-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--base-spacing);
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0) 100%);
+  transform: translateY(100%);
+  transition: transform var(--duration-normal) var(--ease-reveal);
+}
+
+.master-card:hover .master-card-overlay {
+  transform: translateY(0);
+}
+
+.master-card-name {
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem;
+  color: var(--color-parchment);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.master-card-specialty {
+  font-family: var(--font-family-body);
+  color: var(--color-vermilion);
+  margin-top: 0.5rem;
+}
+
+/* Philosophy Page - Manifesto */
+.philosophy-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: calc(var(--base-spacing) * 5) var(--base-spacing);
+}
+
+.philosophy-principle {
+  margin-bottom: calc(var(--base-spacing) * 5);
+  position: relative;
+}
+
+.philosophy-principle-number {
+  position: absolute;
+  top: -1rem;
+  left: -4rem;
+  font-family: var(--font-family-heading);
+  font-size: 4rem;
+  color: var(--color-vermilion);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.philosophy-principle h2 {
+  font-size: 2.5rem;
+  color: var(--color-parchment);
+  margin-bottom: var(--base-spacing);
+  font-family: var(--font-family-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.philosophy-principle p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-family: var(--font-family-body);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .homepage-video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
   }
   
-  .homepage-tagline {
-    font-size: 1.25rem;
-    padding: 0 1rem;
+  .hero-subtitle {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+  
+  .masters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: calc(var(--base-spacing) * 2);
+  }
+  
+  .philosophy-principle-number {
+    position: relative;
+    left: 0;
+    top: 0;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.6;
+  }
+  
+  .philosophy-principle h2 {
+    font-size: 1.8rem;
   }
 }
