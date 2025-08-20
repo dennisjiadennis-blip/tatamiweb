@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useParams } from 'next/navigation'
 import { Input } from '@/components/ui/input'
@@ -57,6 +57,7 @@ export default function MastersPage() {
   // Use params locale as fallback if hook fails
   const locale = localeFromHook || localeFromParams || 'en'
   const t = useTranslations()
+  const titleRef = useRef<HTMLHeadingElement>(null)
   
   // Ensure locale is properly detected from URL params as fallback
 
@@ -90,6 +91,22 @@ export default function MastersPage() {
     fetchMasters(search, filter, page)
   }, [search, filter, page])
 
+  // Staggered letter animation effect for title
+  useEffect(() => {
+    const title = titleRef.current
+    if (title) {
+      const text = getLocalizedText('title')
+      title.innerHTML = '' // Clear original text
+      text.split('').forEach((char, index) => {
+        const span = document.createElement('span')
+        span.textContent = char === ' ' ? '\u00A0' : char // Non-breaking space for spaces
+        span.className = 'page-title-letter'
+        span.style.animationDelay = `${index * 0.05}s`
+        title.appendChild(span)
+      })
+    }
+  }, [locale]) // Re-run when language changes
+
   const handleSearch = (value: string) => {
     setSearch(value)
     setPage(1)
@@ -100,42 +117,20 @@ export default function MastersPage() {
     setPage(1)
   }
 
-  // Get localized text for the new design
+  // Use proper next-intl translation keys
+  const mastersT = useTranslations('masters')
+  
+  // Helper function to get localized master page text
   const getLocalizedText = (key: string) => {
-    const texts = {
-      title: {
-        en: 'Intelligence Dossier',
-        'zh-TW': '情報檔案',
-        ja: 'インテリジェンス・ドシエ'
-      },
-      subtitle: {
-        en: 'Discover the masters who will guide your journey',
-        'zh-TW': '發現將引導您旅程的大師',
-        ja: 'あなたの旅を導く名匠を発見する'
-      },
-      allMasters: {
-        en: 'All Masters',
-        'zh-TW': '所有大師',
-        ja: '全ての名匠'
-      },
-      withTrips: {
-        en: 'With Trips',
-        'zh-TW': '有旅程',
-        ja: '旅程あり'
-      },
-      noMastersFound: {
-        en: 'No masters found matching your criteria.',
-        'zh-TW': '沒有找到符合條件的大師。',
-        ja: '条件に一致する名匠が見つかりません。'
-      },
-      clearFilters: {
-        en: 'Clear Filters',
-        'zh-TW': '清除篩選',
-        ja: 'フィルターをクリア'
-      }
+    const textMap = {
+      title: locale === 'zh-TW' ? '情報檔案' : locale === 'ja' ? 'インテリジェンス・ドシエ' : 'Intelligence Dossier',
+      subtitle: mastersT('subtitle'),
+      allMasters: mastersT('filters.all'),
+      withTrips: mastersT('filters.trips'), 
+      noMastersFound: mastersT('noMastersFound'),
+      clearFilters: mastersT('clearFilters')
     }
-    const result = texts[key as keyof typeof texts]?.[locale as keyof typeof texts.title] || texts[key as keyof typeof texts]?.en
-    return result
+    return textMap[key as keyof typeof textMap] || key
   }
 
   return (
@@ -148,7 +143,7 @@ export default function MastersPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="masters-page-title">
+          <h1 ref={titleRef} className="masters-page-title page-title-reveal">
             {getLocalizedText('title')}
           </h1>
           <p className="masters-page-subtitle">
@@ -165,13 +160,13 @@ export default function MastersPage() {
         >
           <button
             onClick={() => handleFilterChange('all')}
-            className={`masters-filter-button ${filter === 'all' ? 'active' : ''}`}
+            className={`filter-button ${filter === 'all' ? 'active' : ''}`}
           >
             {getLocalizedText('allMasters')}
           </button>
           <button
             onClick={() => handleFilterChange('trips')}
-            className={`masters-filter-button ${filter === 'trips' ? 'active' : ''}`}
+            className={`filter-button ${filter === 'trips' ? 'active' : ''}`}
           >
             {getLocalizedText('withTrips')}
           </button>
@@ -206,16 +201,16 @@ export default function MastersPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="master-card"
+                className="dossier-card"
                 onClick={() => window.location.href = `/${locale}/masters/${master.id}`}
               >
                 <img
-                  src={master.heroImage || '/placeholder-master.jpg'}
+                  src={master.heroImage || '/images/masters/placeholder.jpg'}
                   alt={master.name}
-                  className="master-card-image"
+                  className="dossier-card-image"
                 />
-                <div className="master-card-overlay">
-                  <h3 className="master-card-name">
+                <div className="dossier-card-overlay">
+                  <h3 className="dossier-card-name">
                     {locale === 'ja' 
                       ? (master.nameJa || master.name)
                       : locale === 'zh-TW'
@@ -223,7 +218,7 @@ export default function MastersPage() {
                       : (master.nameEn || master.name)
                     }
                   </h3>
-                  <p className="master-card-specialty">
+                  <p className="dossier-card-specialty">
                     {locale === 'ja'
                       ? (master.titleJa || master.title)
                       : locale === 'zh-TW'
