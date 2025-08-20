@@ -1,0 +1,112 @@
+{
+  "navigation": {
+    "home": "Home",
+    "philosophy": "Philosophy",
+    "content": "Content Center",
+    "community": "Community",
+    "profile": "Profile",
+    "signin": "Sign In"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Deep conversations with Japanese masters",
+      "subtitle": "Connect across cultures through authentic dialogue",
+      "cta": "Begin Your Journey",
+      "loading": "Loading...",
+      "error": "Unable to load content"
+    },
+    "glimpse": {
+      "phase": {
+        "loading": "Preparing your glimpse...",
+        "video": "Experience the moment...",
+        "reflection": "Reflect on what you've seen...",
+        "invitation": "Ready to go deeper?"
+      },
+      "actions": {
+        "continue": "Continue",
+        "explore": "Explore Master",
+        "restart": "See Another"
+      }
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "Sign In",
+      "description": "Continue your journey with Japanese masters",
+      "google": "Continue with Google",
+      "magic-link": "Send Magic Link"
+    },
+    "verify": {
+      "title": "Check Your Email",
+      "description": {
+        "with-email": "We've sent a magic link to",
+        "general": "We've sent you a magic link to sign in"
+      },
+      "step1": "Check your email inbox for the magic link",
+      "step2": "Click the link in the email to sign in",
+      "step3": "You'll be automatically redirected to your destination",
+      "note": {
+        "title": "Note:",
+        "spam": "Check your spam folder if you don't see the email",
+        "expire": "The magic link will expire in 10 minutes",
+        "security": "For security, the link can only be used once"
+      },
+      "back-signin": "Back to Sign In"
+    },
+    "error": {
+      "title": "Authentication Error",
+      "configuration": "There is a problem with the server configuration.",
+      "access-denied": "Access denied. You do not have permission to sign in.",
+      "verification": "The verification token has expired or has already been used.",
+      "oauth-signin": "There was an error with the OAuth provider.",
+      "oauth-callback": "There was an error processing the OAuth callback.",
+      "oauth-create-account": "Could not create account with OAuth provider.",
+      "email-create-account": "Could not create account with email provider.",
+      "callback": "There was an error in the callback URL.",
+      "oauth-account-not-linked": "This account is already linked to another authentication method.",
+      "email-signin": "Could not send email with magic link.",
+      "credentials-signin": "Invalid credentials provided.",
+      "session-required": "You must be signed in to access this page.",
+      "default": "An unexpected error occurred during authentication.",
+      "details": {
+        "title": "Error details:"
+      },
+      "suggestions": {
+        "title": "Try these solutions:",
+        "refresh": "Refresh the page and try again",
+        "browser": "Try using a different browser",
+        "cookies": "Make sure cookies are enabled",
+        "try-again": "Wait a moment and try again"
+      },
+      "try-again": "Try Again",
+      "support": {
+        "text": "Still having trouble?",
+        "link": "Contact Support"
+      }
+    },
+    "email": "Email Address",
+    "email.placeholder": "Enter your email address",
+    "or": "or",
+    "and": "and",
+    "terms": {
+      "text": "By signing in, you agree to our",
+      "link": "Terms of Service"
+    },
+    "privacy": {
+      "link": "Privacy Policy"
+    },
+    "back-home": "← Back to Home"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Try Again",
+    "success": "Success",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  }
+}

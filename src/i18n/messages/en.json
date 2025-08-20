@@ -1,0 +1,183 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "next": "Next",
+    "previous": "Previous",
+    "back": "Back",
+    "submit": "Submit"
+  },
+  "navigation": {
+    "home": "Home",
+    "philosophy": "Our Philosophy", 
+    "masters": "Masters",
+    "content": "Content",
+    "community": "Community",
+    "profile": "Profile",
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "homepage": {
+    "title": "Tatami Labs",
+    "subtitle": "The Journey to Weave a Story",
+    "description": "Connecting global minds with Japan's ultimate masters through deep conversation journeys",
+    "taglines": {
+      "joy": "What makes a master laugh after 40 years of dedication?",
+      "warmth": "Behind every gentle smile lies a profound story...",
+      "contemplation": "The weight of tradition sometimes brings tears...",
+      "moved": "When passion meets purpose, hearts are moved...",
+      "revelation": "Some discoveries change everything you thought you knew...",
+      "wonder": "The moment when the impossible becomes possible...",
+      "awe": "What secrets do the hands of a true master hold?"
+    },
+    "enter": "Enter the Journey"
+  },
+  "masters": {
+    "title": "Japanese Masters",
+    "subtitle": "Meet Japan's Ultimate Masters",
+    "description": "Connect with Japan's ultimate masters through deep conversation journeys",
+    "viewProfile": "View Profile",
+    "bookJourney": "Book Journey",
+    "expressInterest": "Express Interest",
+    "generation": "{count}th Generation",
+    "yearsOfExperience": "{count} years of experience",
+    "noTripsAvailable": "No trips currently available",
+    "searchPlaceholder": "Search masters...",
+    "filters": {
+      "all": "All Masters",
+      "trips": "With Trips",
+      "conversations": "Conversations Only"
+    },
+    "tripAvailable": "Trip Available",
+    "noMastersFound": "No masters found matching your criteria.",
+    "clearFilters": "Clear Filters",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
+    }
+  },
+  "masterProfile": {
+    "sections": {
+      "encounter": "The Encounter",
+      "firstWords": "First Words", 
+      "deepExploration": "Deep Exploration",
+      "resonantMoments": "Resonant Moments",
+      "craftAndMission": "Craft & Mission",
+      "invitation": "The Invitation"
+    },
+    "watchIntro": "Watch Introduction",
+    "viewTopClips": "View Top Clips",
+    "learnMore": "Learn More",
+    "bookNow": "Book Now",
+    "interested": "I'm Interested"
+  },
+  "philosophy": {
+    "title": "Our Philosophy",
+    "subtitle": "Beyond Tourism, Into Truth",
+    "description": "We create genuine, equal dialogues - not performances. Participants are 'welcomed visitors,' not 'tourists,' engaging in authentic exchanges with masters. This is a 'spiritual restart.'",
+    "principles": {
+      "authenticity": {
+        "title": "Authentic Connection",
+        "description": "Real conversations, not staged performances"
+      },
+      "equality": {
+        "title": "Equal Exchange", 
+        "description": "Masters and visitors meet as equals in dialogue"
+      },
+      "depth": {
+        "title": "Deep Understanding",
+        "description": "Moving beyond surface to discover profound truths"
+      },
+      "respect": {
+        "title": "Cultural Respect",
+        "description": "Honoring traditions while embracing new perspectives"
+      }
+    }
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "A Global Network of Deep Thinkers",
+    "description": "Join a community of individuals passionate about meaningful dialogue and cultural exchange",
+    "joinCommunity": "Join Community",
+    "members": "{count} members",
+    "discussions": "{count} discussions",
+    "stories": "{count} stories shared",
+    "events": {
+      "joinEvent": "Join Event",
+      "eventFull": "Full",
+      "spots": "{available} / {total} spots"
+    }
+  },
+  "content": {
+    "title": "Content",
+    "subtitle": "Stories, Insights, and Discoveries",
+    "description": "Explore in-depth articles, interviews, and videos from our journeys",
+    "readMore": "Read More",
+    "watchNow": "Watch Now",
+    "categories": {
+      "all": "All",
+      "articles": "Articles",
+      "videos": "Videos", 
+      "interviews": "Interviews",
+      "stories": "Stories"
+    },
+    "publishedOn": "Published on {date}",
+    "readTime": "{minutes} min read"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Your Journey with Tatami Labs",
+    "interests": "My Interests",
+    "contributions": "My Contributions", 
+    "referrals": "Referrals",
+    "bookings": "Bookings",
+    "settings": "Settings",
+    "editProfile": "Edit Profile",
+    "changeLanguage": "Change Language"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "signInWith": "Sign in with {provider}",
+    "magicLink": "Send magic link",
+    "emailSent": "Check your email for a magic link",
+    "welcome": "Welcome to Tatami Labs",
+    "welcomeBack": "Welcome back"
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message", 
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "sending": "Sending...",
+    "sent": "Sent successfully",
+    "failed": "Failed to send. Please try again."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "The requested resource was not found.",
+    "unauthorized": "You need to sign in to access this resource.",
+    "forbidden": "You don't have permission to access this resource.",
+    "validation": "Please check your input and try again.",
+    "network": "Network error. Please check your connection."
+  },
+  "meta": {
+    "title": "Tatami Labs - Deep Conversation Journeys with Japan's Masters",
+    "description": "Connect with Japan's ultimate masters through profound dialogue experiences. Discover the secrets behind centuries of dedication and craft.",
+    "keywords": "Japan masters, cultural exchange, deep conversation, traditional crafts, artisans, dialogue journey"
+  }
+}

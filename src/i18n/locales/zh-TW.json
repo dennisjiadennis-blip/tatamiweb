@@ -1,0 +1,112 @@
+{
+  "navigation": {
+    "home": "首頁",
+    "philosophy": "理念",
+    "content": "內容中心",
+    "community": "社群",
+    "profile": "個人檔案",
+    "signin": "登入"
+  },
+  "homepage": {
+    "hero": {
+      "title": "與日本達人的深度對話",
+      "subtitle": "透過真實的對話跨越文化藩籬",
+      "cta": "開始你的旅程",
+      "loading": "載入中...",
+      "error": "無法載入內容"
+    },
+    "glimpse": {
+      "phase": {
+        "loading": "正在準備你的一瞥...",
+        "video": "體驗這個時刻...",
+        "reflection": "回味你所看到的...",
+        "invitation": "準備更深入探索了嗎？"
+      },
+      "actions": {
+        "continue": "繼續",
+        "explore": "探索達人",
+        "restart": "看另一個"
+      }
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "登入",
+      "description": "繼續你與日本達人的旅程",
+      "google": "使用 Google 繼續",
+      "magic-link": "發送魔法連結"
+    },
+    "verify": {
+      "title": "查看你的電子郵件",
+      "description": {
+        "with-email": "我們已經發送魔法連結至",
+        "general": "我們已經發送魔法連結給你進行登入"
+      },
+      "step1": "檢查你的電子郵件收件匣中的魔法連結",
+      "step2": "點擊郵件中的連結進行登入",
+      "step3": "你將自動重新導向到你的目的地",
+      "note": {
+        "title": "注意：",
+        "spam": "如果沒有看到郵件，請檢查垃圾郵件資料夾",
+        "expire": "魔法連結將在 10 分鐘後過期",
+        "security": "為了安全起見，連結只能使用一次"
+      },
+      "back-signin": "回到登入頁面"
+    },
+    "error": {
+      "title": "認證錯誤",
+      "configuration": "伺服器設定出現問題。",
+      "access-denied": "拒絕存取。你沒有登入的權限。",
+      "verification": "驗證令牌已過期或已被使用。",
+      "oauth-signin": "OAuth 提供者發生錯誤。",
+      "oauth-callback": "處理 OAuth 回調時發生錯誤。",
+      "oauth-create-account": "無法使用 OAuth 提供者創建帳戶。",
+      "email-create-account": "無法使用電子郵件提供者創建帳戶。",
+      "callback": "回調 URL 發生錯誤。",
+      "oauth-account-not-linked": "此帳戶已連結到另一種認證方法。",
+      "email-signin": "無法發送包含魔法連結的電子郵件。",
+      "credentials-signin": "提供的憑證無效。",
+      "session-required": "你必須登入才能存取此頁面。",
+      "default": "認證過程中發生意外錯誤。",
+      "details": {
+        "title": "錯誤詳情："
+      },
+      "suggestions": {
+        "title": "嘗試以下解決方案：",
+        "refresh": "重新整理頁面並重試",
+        "browser": "嘗試使用不同的瀏覽器",
+        "cookies": "確保已啟用 cookies",
+        "try-again": "稍等片刻後重試"
+      },
+      "try-again": "重試",
+      "support": {
+        "text": "仍有問題？",
+        "link": "聯絡支援"
+      }
+    },
+    "email": "電子郵件地址",
+    "email.placeholder": "輸入你的電子郵件地址",
+    "or": "或",
+    "and": "和",
+    "terms": {
+      "text": "登入即表示你同意我們的",
+      "link": "服務條款"
+    },
+    "privacy": {
+      "link": "隱私政策"
+    },
+    "back-home": "← 回到首頁"
+  },
+  "common": {
+    "loading": "載入中...",
+    "error": "錯誤",
+    "retry": "重試",
+    "success": "成功",
+    "cancel": "取消",
+    "continue": "繼續",
+    "back": "返回",
+    "next": "下一個",
+    "previous": "上一個",
+    "close": "關閉"
+  }
+}

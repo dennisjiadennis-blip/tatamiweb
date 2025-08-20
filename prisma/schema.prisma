@@ -1,0 +1,308 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 达人信息模型
+model Master {
+  id              String    @id @default(cuid())
+  name            String    // 达人姓名
+  title           String    // 头衔 (如"第16代酿酒师")
+  profileVideo    String?   // 首页展示视频URL
+  heroImage       String?   // 档案页头图
+  introVideo      String?   // "初语"视频URL
+  storyContent    String?   // 富文本故事内容 (JSON string)
+  topClips        String?   // Top 5访谈视频片段URLs (JSON string)
+  missionCard     String?   // 使命卡片 (JSON string)
+  hasTripProduct  Boolean   @default(false)
+  tripBookingURL  String?   // 第三方预订链接
+  priority        Int       @default(0) // 首页展示权重
+  isActive        Boolean   @default(true)
+  
+  // 多语言支持
+  nameEn          String?
+  nameJa          String?
+  titleEn         String?
+  titleJa         String?
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // 关联关系
+  interests       Interest[]
+  
+  @@map("masters")
+}
+
+// 用户模型
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  avatar        String?
+  referralCode  String    @unique @default(cuid()) // 推广代码
+  googleId      String?   @unique
+  locale        String    @default("en") // 用户语言偏好
+  
+  // 认证相关
+  emailVerified DateTime?
+  
+  // CMS权限管理
+  role          String    @default("USER") // USER, ADMIN, SUPER_ADMIN
+  permissions   String?   // JSON string of permissions array
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  contributions Contribution[]
+  interests     Interest[]
+  accounts      Account[]
+  sessions      Session[]
+  adminLogs     AdminLog[]
+  referralLinks ReferralLink[]
+  conversions   Conversion[]
+  payments      Payment[]
+  
+  @@map("users")
+}
+
+// NextAuth相关模型
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// 贡献追踪模型
+model Contribution {
+  id        String           @id @default(cuid())
+  userId    String
+  type      String // ContributionType枚举值
+  value     Float            @default(0) // 贡献值/积分
+  metadata  String?          // 额外元数据 (JSON string)
+  referralId String?         // 推广链接ID
+  orderId   String?          // 订单ID
+  createdAt DateTime         @default(now())
+  
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referral  ReferralLink?    @relation(fields: [referralId], references: [id])
+  
+  @@map("contributions")
+}
+
+// 推广链接模型
+model ReferralLink {
+  id          String    @id @default(cuid())
+  userId      String    // 推广者用户ID
+  code        String    @unique // 推广代码
+  name        String?   // 链接名称
+  description String?   // 链接描述
+  targetUrl   String    // 目标URL
+  isActive    Boolean   @default(true)
+  expiresAt   DateTime? // 过期时间
+  
+  // 统计数据
+  clickCount    Int     @default(0)
+  conversionCount Int   @default(0)
+  totalEarnings Float   @default(0)
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clicks       ReferralClick[]
+  conversions  Conversion[]
+  contributions Contribution[]
+  
+  @@map("referral_links")
+}
+
+// 推广点击记录
+model ReferralClick {
+  id           String       @id @default(cuid())
+  referralId   String
+  ipAddress    String?
+  userAgent    String?
+  referer      String?
+  country      String?
+  city         String?
+  device       String?
+  browser      String?
+  convertedAt  DateTime?    // 转化时间
+  
+  createdAt    DateTime     @default(now())
+  
+  referral     ReferralLink @relation(fields: [referralId], references: [id], onDelete: Cascade)
+  
+  @@map("referral_clicks")
+}
+
+// 转化记录模型
+model Conversion {
+  id           String       @id @default(cuid())
+  referralId   String
+  userId       String?      // 如果用户已注册
+  orderId      String       @unique // 订单ID
+  orderValue   Float        // 订单金额
+  commission   Float        // 佣金金额
+  commissionRate Float      // 佣金比例
+  status       String       @default("PENDING") // PENDING, CONFIRMED, PAID, CANCELLED
+  paidAt       DateTime?    // 支付时间
+  
+  // 订单详情
+  productType  String?      // 产品类型
+  productId    String?      // 产品ID
+  quantity     Int          @default(1)
+  
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  referral     ReferralLink @relation(fields: [referralId], references: [id], onDelete: Cascade)
+  user         User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@map("conversions")
+}
+
+// 支付记录模型
+model Payment {
+  id          String    @id @default(cuid())
+  userId      String    // 收款用户
+  amount      Float     // 支付金额
+  currency    String    @default("USD") // 货币类型
+  method      String    // 支付方式
+  status      String    @default("PENDING") // PENDING, COMPLETED, FAILED, CANCELLED
+  reference   String?   // 外部支付参考号
+  description String?   // 支付描述
+  
+  // 关联转化记录
+  conversionIds String? // JSON数组，包含的转化记录ID
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("payments")
+}
+
+// 用户兴趣追踪
+model Interest {
+  id        String   @id @default(cuid())
+  userId    String
+  masterId  String
+  status    String   @default("INTERESTED") // InterestStatus枚举值
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  master    Master   @relation(fields: [masterId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, masterId])
+  @@map("interests")
+}
+
+// 内容模型 (用于内容中心)
+model Content {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  excerpt     String?
+  content     String      // 富文本内容 (JSON string)
+  coverImage  String?
+  status      String      @default("DRAFT") // ContentStatus枚举值
+  type        String      // ContentType枚举值
+  
+  // SEO
+  metaTitle   String?
+  metaDescription String?
+  
+  // 多语言
+  titleEn     String?
+  titleJa     String?
+  excerptEn   String?
+  excerptJa   String?
+  
+  // 管理信息
+  authorId    String?     // 创建者ID
+  lastEditedBy String?    // 最后编辑者ID
+  
+  publishedAt DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  @@map("contents")
+}
+
+// 管理员操作日志
+model AdminLog {
+  id          String      @id @default(cuid())
+  userId      String
+  action      String      // 操作类型: CREATE, UPDATE, DELETE, LOGIN, etc.
+  entityType  String?     // 实体类型: USER, MASTER, CONTENT, etc.
+  entityId    String?     // 实体ID
+  details     String?     // 操作详情 (JSON string)
+  ipAddress   String?
+  userAgent   String?
+  
+  createdAt   DateTime    @default(now())
+  
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("admin_logs")
+}
+
+// CMS设置表
+model Settings {
+  id          String      @id @default(cuid())
+  key         String      @unique
+  value       String      // JSON string
+  description String?
+  category    String      @default("GENERAL") // GENERAL, EMAIL, SEO, etc.
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  @@map("settings")
+}

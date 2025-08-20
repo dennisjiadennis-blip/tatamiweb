@@ -1,0 +1,183 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "retry": "再試行",
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "search": "検索",
+    "filter": "フィルター",
+    "sort": "ソート",
+    "next": "次へ",
+    "previous": "前へ",
+    "back": "戻る",
+    "submit": "送信"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "philosophy": "私たちの理念",
+    "masters": "匠",
+    "content": "コンテンツ",
+    "community": "コミュニティ",
+    "profile": "プロフィール",
+    "admin": "管理",
+    "signIn": "サインイン",
+    "signOut": "サインアウト"
+  },
+  "homepage": {
+    "title": "畳ラボ",
+    "subtitle": "物語を紡ぐ旅",
+    "description": "深い対話の旅を通じて、世界中のユーザーと日本の「究極の人」をつなぐ",
+    "taglines": {
+      "joy": "40年の献身の後、何がマスターを笑わせるのか？",
+      "warmth": "穏やかな笑顔の奥には、深い物語がある...",
+      "contemplation": "伝統の重みが、時に涙をもたらす...",
+      "moved": "情熱と目的が出会うとき、心が動かされる...",
+      "revelation": "ある発見は、あなたが知っていると思っていたすべてを変える...",
+      "wonder": "不可能が可能になる瞬間...",
+      "awe": "真のマスターの手は、どんな秘密を握っているのか？"
+    },
+    "enter": "旅を始める"
+  },
+  "masters": {
+    "title": "日本の匠",
+    "subtitle": "日本の究極の匠との出会い",
+    "description": "深い対話の旅を通じて、世界中のユーザーと日本の「究極の人」をつなぐ",
+    "viewProfile": "プロフィールを見る",
+    "bookJourney": "旅を予約",
+    "expressInterest": "興味を表明",
+    "generation": "第{count}代",
+    "yearsOfExperience": "{count}年の経験",
+    "noTripsAvailable": "現在予約可能な旅程はありません",
+    "searchPlaceholder": "匠を検索...",
+    "filters": {
+      "all": "すべての匠",
+      "trips": "旅あり",
+      "conversations": "対話のみ"
+    },
+    "tripAvailable": "旅可能",
+    "noMastersFound": "条件に一致する匠が見つかりません。",
+    "clearFilters": "フィルターをクリア",
+    "pagination": {
+      "previous": "前へ",
+      "next": "次へ",
+      "pageOf": "ページ {page} / {totalPages}"
+    }
+  },
+  "masterProfile": {
+    "sections": {
+      "encounter": "邂逅",
+      "firstWords": "初語",
+      "deepExploration": "深い探求",
+      "resonantMoments": "共鳴の瞬間",
+      "craftAndMission": "技と使命",
+      "invitation": "響きと招待"
+    },
+    "watchIntro": "紹介を見る",
+    "viewTopClips": "ハイライト映像を見る",
+    "learnMore": "詳細を見る",
+    "bookNow": "今すぐ予約",
+    "interested": "興味があります"
+  },
+  "philosophy": {
+    "title": "私たちの理念",
+    "subtitle": "観光を超えて、真実へ",
+    "description": "私たちは真摯で平等な対話を創造します。パフォーマンスではありません。参加者は「歓迎された訪問者」であり、「観光客」ではなく、匠と真の交流を行います。これは「精神の再起動」です。",
+    "principles": {
+      "authenticity": {
+        "title": "真のつながり",
+        "description": "作られた演出ではなく、本当の会話"
+      },
+      "equality": {
+        "title": "平等な交流",
+        "description": "匠と訪問者が対等な対話者として出会う"
+      },
+      "depth": {
+        "title": "深い理解",
+        "description": "表面を超えて、深い真理を発見する"
+      },
+      "respect": {
+        "title": "文化への敬意",
+        "description": "伝統を尊重しながら新しい視点を受け入れる"
+      }
+    }
+  },
+  "community": {
+    "title": "コミュニティ",
+    "subtitle": "世界的な深い思考者のネットワーク",
+    "description": "有意義な対話と文化交流に情熱を持つ個人のコミュニティに参加する",
+    "joinCommunity": "コミュニティに参加",
+    "members": "{count} 名のメンバー",
+    "discussions": "{count} の議論",
+    "stories": "{count} のストーリーが共有されました",
+    "events": {
+      "joinEvent": "参加する",
+      "eventFull": "満席",
+      "spots": "{available} / {total} 席"
+    }
+  },
+  "content": {
+    "title": "コンテンツ",
+    "subtitle": "物語、洞察、発見",
+    "description": "私たちの旅からの詳細な記事、インタビュー、動画を探索する",
+    "readMore": "続きを読む",
+    "watchNow": "今すぐ見る",
+    "categories": {
+      "all": "すべて",
+      "articles": "記事",
+      "videos": "動画",
+      "interviews": "インタビュー",
+      "stories": "ストーリー"
+    },
+    "publishedOn": "{date} に公開",
+    "readTime": "{minutes} 分の読書"
+  },
+  "profile": {
+    "title": "マイプロフィール",
+    "subtitle": "畳ラボでのあなたの旅",
+    "interests": "私の興味",
+    "contributions": "私の貢献",
+    "referrals": "紹介",
+    "bookings": "予約",
+    "settings": "設定",
+    "editProfile": "プロフィールを編集",
+    "changeLanguage": "言語を変更"
+  },
+  "auth": {
+    "signIn": "サインイン",
+    "signUp": "サインアップ",
+    "signOut": "サインアウト",
+    "signInWith": "{provider} でサインイン",
+    "magicLink": "マジックリンクを送信",
+    "emailSent": "マジックリンクをメールで確認してください",
+    "welcome": "畳ラボへようこそ",
+    "welcomeBack": "お帰りなさい"
+  },
+  "forms": {
+    "name": "名前",
+    "email": "メールアドレス",
+    "message": "メッセージ",
+    "required": "この項目は必須です",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "sending": "送信中...",
+    "sent": "送信成功",
+    "failed": "送信失敗、再試行してください"
+  },
+  "errors": {
+    "generic": "エラーが発生しました。もう一度お試しください。",
+    "notFound": "要求されたリソースが見つかりません。",
+    "unauthorized": "このリソースにアクセスするにはサインインが必要です。",
+    "forbidden": "このリソースにアクセスする権限がありません。",
+    "validation": "入力内容を確認してもう一度お試しください。",
+    "network": "ネットワークエラー。接続を確認してください。"
+  },
+  "meta": {
+    "title": "畳ラボ - 日本の匠との深い対話の旅",
+    "description": "深い対話体験を通じて日本の究極の匠とつながる。何世紀にもわたって受け継がれた匠の心の秘密を発見する。",
+    "keywords": "日本の匠, 文化交流, 深い対話, 伝統工芸, 職人, 対話の旅"
+  }
+}
