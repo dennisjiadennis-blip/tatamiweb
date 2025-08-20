@@ -36,8 +36,7 @@
 }
 
 /* Base Body Styles - Cinematic Foundation */
-body,
-.hitchcock-body {
+body {
   background-color: var(--color-charcoal);
   color: var(--color-text-primary);
   font-family: var(--font-family-body);

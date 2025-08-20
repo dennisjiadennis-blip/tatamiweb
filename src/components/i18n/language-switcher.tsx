@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,11 +21,17 @@ const languages = {
 export function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
-  
-  // 获取当前语言
-  const currentLocale = locales.find(locale => 
-    pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  ) || 'en'
+  const [currentLocale, setCurrentLocale] = useState('en')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // 获取当前语言
+    const locale = locales.find(locale => 
+      pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    ) || 'en'
+    setCurrentLocale(locale)
+  }, [pathname])
 
   const handleLanguageChange = (newLocale: string) => {
     // 替换当前路径中的语言前缀
@@ -43,6 +50,16 @@ export function LanguageSwitcher() {
     
     // 导航到新路径
     router.push(newPath)
+  }
+
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="sm" className="flex items-center gap-2">
+        <span className="text-lg">🇺🇸</span>
+        <span className="hidden sm:inline-block">English</span>
+        <Icons.chevronDown className="h-4 w-4" />
+      </Button>
+    )
   }
 
   return (
