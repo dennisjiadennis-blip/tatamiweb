@@ -120,8 +120,8 @@ export default function MastersPage() {
   }
 
   return (
-    <div style={{ backgroundColor: 'var(--color-charcoal)', minHeight: '100vh', color: 'var(--color-text-primary)' }}>
-      <div className="container mx-auto px-4 py-16" style={{ maxWidth: 'var(--container-width)' }}>
+    <div className="masters-page-container">
+      <div className="masters-content-container">
         {/* Page Title - Dramatic Typography */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -129,26 +129,10 @@ export default function MastersPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 style={{
-            fontFamily: 'var(--font-family-heading)',
-            fontSize: 'clamp(3rem, 8vw, 5rem)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            fontWeight: 700,
-            color: 'var(--color-parchment)',
-            marginBottom: 'calc(var(--base-spacing) * 2)',
-            textShadow: '0 0 10px rgba(0,0,0,0.5)'
-          }}>
+          <h1 className="masters-page-title">
             {getLocalizedText('title')}
           </h1>
-          <p style={{
-            fontFamily: 'var(--font-family-body)',
-            fontSize: '1.2rem',
-            color: 'var(--color-text-secondary)',
-            maxWidth: '600px',
-            margin: '0 auto',
-            lineHeight: 1.7
-          }}>
+          <p className="masters-page-subtitle">
             {getLocalizedText('subtitle')}
           </p>
         </motion.div>
@@ -162,35 +146,13 @@ export default function MastersPage() {
         >
           <button
             onClick={() => handleFilterChange('all')}
-            style={{
-              fontFamily: 'var(--font-family-heading)',
-              fontSize: '1rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              color: filter === 'all' ? 'var(--color-vermilion)' : 'var(--color-text-secondary)',
-              backgroundColor: 'transparent',
-              border: filter === 'all' ? '1px solid var(--color-vermilion)' : '1px solid transparent',
-              padding: 'calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5)',
-              cursor: 'pointer',
-              transition: 'all var(--duration-fast) var(--ease-suspense)'
-            }}
+            className={`masters-filter-button ${filter === 'all' ? 'active' : ''}`}
           >
             {getLocalizedText('allMasters')}
           </button>
           <button
             onClick={() => handleFilterChange('trips')}
-            style={{
-              fontFamily: 'var(--font-family-heading)',
-              fontSize: '1rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              color: filter === 'trips' ? 'var(--color-vermilion)' : 'var(--color-text-secondary)',
-              backgroundColor: 'transparent',
-              border: filter === 'trips' ? '1px solid var(--color-vermilion)' : '1px solid transparent',
-              padding: 'calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5)',
-              cursor: 'pointer',
-              transition: 'all var(--duration-fast) var(--ease-suspense)'
-            }}
+            className={`masters-filter-button ${filter === 'trips' ? 'active' : ''}`}
           >
             {getLocalizedText('withTrips')}
           </button>

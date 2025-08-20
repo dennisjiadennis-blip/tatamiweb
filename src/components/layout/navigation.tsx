@@ -48,10 +48,12 @@ export function Navigation() {
               transition: 'color var(--duration-fast) var(--ease-suspense)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = 'var(--color-vermilion)'
+              const target = e.currentTarget as HTMLElement
+              target.style.color = 'var(--color-vermilion)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--color-parchment)'
+              const target = e.currentTarget as HTMLElement
+              target.style.color = 'var(--color-parchment)'
             }}
           >
             Tatami Labs
@@ -74,10 +76,12 @@ export function Navigation() {
                   position: 'relative'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--color-vermilion)'
+                  const target = e.currentTarget as HTMLElement
+                  target.style.color = 'var(--color-vermilion)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--color-text-secondary)'
+                  const target = e.currentTarget as HTMLElement
+                  target.style.color = 'var(--color-text-secondary)'
                 }}
               >
                 {item.label}
@@ -113,12 +117,14 @@ export function Navigation() {
                 transition: 'all var(--duration-fast) var(--ease-suspense)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--color-vermilion)'
-                e.currentTarget.style.color = 'var(--color-vermilion)'
+                const target = e.currentTarget as HTMLElement
+                target.style.borderColor = 'var(--color-vermilion)'
+                target.style.color = 'var(--color-vermilion)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--color-text-secondary)'
-                e.currentTarget.style.color = 'var(--color-text-secondary)'
+                const target = e.currentTarget as HTMLElement
+                target.style.borderColor = 'var(--color-text-secondary)'
+                target.style.color = 'var(--color-text-secondary)'
               }}
               className="md:hidden"
             >
@@ -158,10 +164,12 @@ export function Navigation() {
                       transition: 'color var(--duration-fast) var(--ease-suspense)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--color-vermilion)'
+                      const target = e.currentTarget as HTMLElement
+                      target.style.color = 'var(--color-vermilion)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--color-text-secondary)'
+                      const target = e.currentTarget as HTMLElement
+                      target.style.color = 'var(--color-text-secondary)'
                     }}
                   >
                     {item.label}

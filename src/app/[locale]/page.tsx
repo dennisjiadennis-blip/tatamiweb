@@ -1,36 +1,10 @@
-import { type Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
-import { headers } from 'next/headers'
+'use client'
 
-import { HomepageHero } from '@/components/sections/homepage-hero'
-import { HomepageCTA } from '@/components/sections/homepage-cta'
+import { useState, useEffect } from 'react'
+import { useCurrentLocale } from '@/i18n/hooks'
 
-interface HomePageProps {
-  params: Promise<{ locale: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
-// 生成页面元数据
-export async function generateMetadata({ 
-  params 
-}: HomePageProps): Promise<Metadata> {
-  const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'homepage' })
-  
-  return {
-    title: t('title'),
-    description: t('description'),
-  }
-}
-
-export default async function HomePage({ params, searchParams }: HomePageProps) {
-  const { locale } = await params
-  const resolvedSearchParams = await searchParams
-  const t = await getTranslations({ locale, namespace: 'homepage' })
-  
-  // 获取地理位置信息
-  const headersList = await headers()
-  const country = headersList.get('x-geo-country') || resolvedSearchParams.geo as string
+export default function HomePage() {
+  const locale = useCurrentLocale()
 
   // Get localized text based on specifications
   const getLocalizedText = (key: string) => {
@@ -54,14 +28,19 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
     return texts[key as keyof typeof texts]?.[locale as keyof typeof texts.title] || texts[key as keyof typeof texts]?.en
   }
 
+  const handleCTAClick = () => {
+    const mastersUrl = `/${locale}/masters`
+    window.location.href = mastersUrl
+  }
+
   return (
-    <div className="min-h-screen">
+    <div className="homepage-container">
       {/* Hero Section - The Opening Scene of a Film */}
       <section className="hero-section">
-        {/* Subtle background texture overlay could be added here */}
-        <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-transparent via-zinc-900 to-transparent"></div>
+        {/* Subtle background texture overlay */}
+        <div className="hero-gradient-overlay"></div>
         
-        <div className="relative z-10">
+        <div className="hero-content">
           {/* Main Headline - Typography is the Hero */}
           <h1 className="hero-title">
             {getLocalizedText('title')}
@@ -75,23 +54,14 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
           {/* Single Call to Action - Minimalist Button */}
           <button 
             className="hero-cta"
-            onClick={() => {
-              // Scroll to next section or navigate to masters page
-              const mastersUrl = `/${locale}/masters`
-              window.location.href = mastersUrl
-            }}
+            onClick={handleCTAClick}
           >
             {getLocalizedText('cta')}
           </button>
         </div>
         
         {/* Subtle grain texture overlay */}
-        <div className="absolute inset-0 opacity-[0.015] mix-blend-multiply" 
-             style={{
-               backgroundImage: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(255,255,255,0.1) 50%)',
-               filter: 'contrast(1.2)'
-             }}>
-        </div>
+        <div className="hero-texture-overlay"></div>
       </section>
     </div>
   )

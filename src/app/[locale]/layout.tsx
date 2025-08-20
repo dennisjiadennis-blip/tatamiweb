@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Oswald, Lora } from 'next/font/google'
 import { locales } from '@/i18n/config'
 import { Navigation } from '@/components/layout/navigation'
+import { AuthProvider } from '@/components/providers/session-provider'
 import '@/app/globals.css'
 
 // Hitchcock/Saul Bass inspired fonts
@@ -65,13 +66,15 @@ export default async function LocaleLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="antialiased" style={{ backgroundColor: 'var(--color-charcoal)' }}>
-        <NextIntlClientProvider messages={messages}>
-          <Navigation />
-          <main style={{ paddingTop: '5rem' }}>
-            {children}
-          </main>
-        </NextIntlClientProvider>
+      <body className="antialiased hitchcock-body">
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Navigation />
+            <main className="main-content">
+              {children}
+            </main>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   )

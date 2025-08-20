@@ -36,7 +36,8 @@
 }
 
 /* Base Body Styles - Cinematic Foundation */
-body {
+body,
+.hitchcock-body {
   background-color: var(--color-charcoal);
   color: var(--color-text-primary);
   font-family: var(--font-family-body);
@@ -45,6 +46,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Main content spacing */
+.main-content {
+  padding-top: 5rem;
 }
 
 /* Global Heading Styles - Typographic Drama */
@@ -304,6 +310,10 @@ button, input, select, textarea {
 /* === HITCHCOCK/SAUL BASS PAGE STYLES === */
 
 /* Homepage - The Opening Scene */
+.homepage-container {
+  min-height: 100vh;
+}
+
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -313,7 +323,28 @@ button, input, select, textarea {
   text-align: center;
   padding: 0 var(--base-spacing);
   background-color: var(--color-charcoal);
-  /* Add background texture/video here */
+  position: relative;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background: linear-gradient(135deg, transparent 0%, rgba(113, 113, 122, 0.5) 50%, transparent 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-texture-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(circle at 50% 50%, transparent 40%, rgba(255,255,255,0.1) 50%);
+  filter: contrast(1.2);
 }
 
 .hero-title {
@@ -358,6 +389,59 @@ button, input, select, textarea {
 }
 
 /* Masters Page - Intelligence Dossier */
+.masters-page-container {
+  background-color: var(--color-charcoal);
+  min-height: 100vh;
+  color: var(--color-text-primary);
+}
+
+.masters-content-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.masters-page-title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(3rem, 8vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-parchment);
+  margin-bottom: calc(var(--base-spacing) * 2);
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.masters-page-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.masters-filter-button {
+  font-family: var(--font-family-heading);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-suspense);
+}
+
+.masters-filter-button.active {
+  color: var(--color-vermilion);
+  border-color: var(--color-vermilion);
+}
+
+.masters-filter-button:not(.active) {
+  color: var(--color-text-secondary);
+}
+
 .masters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

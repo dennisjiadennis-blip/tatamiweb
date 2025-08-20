@@ -29,7 +29,7 @@ export function UserMenu() {
         onClick={() => redirectToSignIn()}
         className="font-light"
       >
-        {t('navigation.signin')}
+        {t('navigation.signIn')}
       </Button>
     )
   }
