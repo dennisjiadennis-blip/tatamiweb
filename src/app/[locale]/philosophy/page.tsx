@@ -1,13 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+// import { Button } from '@/components/ui/button' // Unused
+// import { Card, CardContent } from '@/components/ui/card' // Unused
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
 
 export default function PhilosophyPage() {
   const locale = useCurrentLocale()
-  const t = useTranslations()
+  // const t = useTranslations() // Unused
 
   const principles = [
     {

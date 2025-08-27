@@ -13,6 +13,7 @@ import { UserContributionStats } from '@/components/profile/user-contribution-st
 import { UserSettings } from '@/components/profile/user-settings'
 import { useAuth, useUserProfile } from '@/lib/hooks/use-auth'
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
+import Image from 'next/image'
 
 // 懒加载推荐链接组件
 const ReferralsPage = lazy(() => import('./referrals/page'))
@@ -151,9 +152,10 @@ export default function ProfilePage() {
                   <div className="relative">
                     <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center overflow-hidden">
                       {profile.user.avatar ? (
-                        <img 
+                        <Image 
                           src={profile.user.avatar} 
                           alt={profile.user.name || 'User'} 
+                          fill
                           className="w-full h-full object-cover"
                         />
                       ) : (

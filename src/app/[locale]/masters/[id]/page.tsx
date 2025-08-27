@@ -77,8 +77,8 @@ export default function MasterPage({ params }: { params: Promise<{ id: string }>
   const [error, setError] = useState<string | null>(null)
   
   const locale = useCurrentLocale()
-  const t = useTranslations()
-  const { isAuthenticated } = useAuth()
+  // const t = useTranslations() // Unused
+  // const { isAuthenticated } = useAuth() // Unused
 
   useEffect(() => {
     const fetchMaster = async () => {
@@ -93,7 +93,7 @@ export default function MasterPage({ params }: { params: Promise<{ id: string }>
         } else {
           setError(result.error?.message || 'Failed to load master')
         }
-      } catch (err) {
+      } catch (err: unknown) {
         setError('Failed to load master')
       } finally {
         setLoading(false)
@@ -320,7 +320,7 @@ export default function MasterPage({ params }: { params: Promise<{ id: string }>
                   <h2 className="text-2xl font-light mb-6">Philosophy</h2>
                   <div className="bg-muted/50 p-6 rounded-lg">
                     <p className="text-lg font-light leading-relaxed italic">
-                      "{getPhilosophy()}"
+                      &ldquo;{getPhilosophy()}&rdquo;
                     </p>
                   </div>
                 </motion.div>

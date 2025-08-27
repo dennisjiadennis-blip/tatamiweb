@@ -1,11 +1,13 @@
 {
   "navigation": {
     "home": "Home",
+    "masters": "Masters",
     "philosophy": "Philosophy",
     "content": "Content Center",
     "community": "Community",
     "profile": "Profile",
-    "signin": "Sign In"
+    "signin": "Sign In",
+    "signIn": "Sign In"
   },
   "homepage": {
     "hero": {
@@ -84,8 +86,10 @@
         "link": "Contact Support"
       }
     },
-    "email": "Email Address",
-    "email.placeholder": "Enter your email address",
+    "email": {
+      "address": "Email Address",
+      "placeholder": "Enter your email address"
+    },
     "or": "or",
     "and": "and",
     "terms": {
@@ -104,9 +108,23 @@
     "success": "Success",
     "cancel": "Cancel",
     "continue": "Continue",
+    "joinOurJourney": "JOIN OUR JOURNEY",
+    "journeySlogan": "THE JOURNEY TO LEAVE A STORY",
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "close": "Close"
+    "close": "Close",
+    "skipIntroduction": "Skip Introduction",
+    "enterHeartJourney": "Enter Heart's Journey"
+  },
+  "productIntro": {
+    "title": "Welcome to Tatami Labs",
+    "descriptionLines": {
+      "0": "Tatami Labs offers profound Japanese cultural immersion, beyond simple sightseeing.",
+      "1": "Co-create videos with masters, sharing ownership and revenue.",
+      "2": "AI powers all video operations: multi-language generation, smart distribution, fully by AI Agents.",
+      "3": "Our vision: a mutually rewarding ecosystem where everyone benefits."
+    },
+    "coreConcept": "Content co-creation is the heart of this journey."
   }
 }

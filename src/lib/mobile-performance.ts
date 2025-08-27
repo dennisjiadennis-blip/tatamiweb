@@ -202,7 +202,7 @@ export const MemoryOptimizer = {
 }
 
 // React hooks for mobile performance
-import React from 'react'
+// React is already imported at the top of the file
 
 // 使用防抖的hook
 export function useDebounce<T>(value: T, delay: number): T {

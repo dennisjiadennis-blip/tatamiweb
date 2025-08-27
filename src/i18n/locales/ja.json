@@ -1,11 +1,13 @@
 {
   "navigation": {
     "home": "ホーム",
+    "masters": "達人",
     "philosophy": "哲学",
     "content": "コンテンツセンター",
     "community": "コミュニティ",
     "profile": "プロフィール",
-    "signin": "サインイン"
+    "signin": "サインイン",
+    "signIn": "サインイン"
   },
   "homepage": {
     "hero": {
@@ -84,8 +86,10 @@
         "link": "サポートに連絡"
       }
     },
-    "email": "メールアドレス",
-    "email.placeholder": "メールアドレスを入力してください",
+    "email": {
+      "address": "メールアドレス",
+      "placeholder": "メールアドレスを入力してください"
+    },
     "or": "または",
     "and": "および",
     "terms": {
@@ -104,9 +108,29 @@
     "success": "成功",
     "cancel": "キャンセル",
     "continue": "続ける",
+    "joinOurJourney": "私たちの旅に参加する",
+    "journeySlogan": "物語を残す旅",
     "back": "戻る",
     "next": "次へ",
     "previous": "前へ",
-    "close": "閉じる"
+    "close": "閉じる",
+    "skipIntroduction": "紹介をスキップ",
+    "enterHeartJourney": "心の旅へ"
+  },
+  "productIntro": {
+    "title": "Tatami Labs へようこそ",
+    "descriptionLines": {
+      "0": "Tatami Labs は、単なる観光でなく、深い日本文化体験を提供します。",
+      "1": "達人とビデオを共創し、所有権と収益を共有。",
+      "2": "AI が多言語生成、スマート配信など、全ての動画運用をエージェントで実施します。",
+      "3": "文化体験者もクリエーターも、誰もが恩恵を受ける共創エコシステムです。"
+    },
+    "coreConcept": "コンテンツ共創こそが、この旅の核心です。",
+    "benefits": {
+      "forTravelers": "文化探索者：真に独特で深い体験を得る",
+      "forCreators": "コンテンツクリエーター：新しい収益源と創作のインスピレーションを発見",
+      "forMasters": "文化継承者：技と知恵を世界中に分かち合う"
+    },
+    "tagline": "単なる旅行ではなく、深い文化的繋がりと協働創作"
   }
 }

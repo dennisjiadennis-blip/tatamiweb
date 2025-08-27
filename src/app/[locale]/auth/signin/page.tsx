@@ -10,6 +10,7 @@ import { Icons } from '@/components/ui/icons'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/lib/hooks/use-auth'
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
+import { logger } from '@/lib/logger'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
@@ -40,7 +41,7 @@ export default function SignInPage() {
     try {
       await signInWithEmail(email, callbackUrl || `/${locale}`)
     } catch (error) {
-      console.error('Sign in error:', error)
+      logger.error('Sign in error:', error)
     } finally {
       setIsSubmitting(false)
     }

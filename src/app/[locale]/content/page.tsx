@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Icons } from '@/components/ui/icons'
 import { useCurrentLocale } from '@/i18n/hooks'
+import Image from 'next/image'
 
 export default function ContentPage() {
   const locale = useCurrentLocale()
@@ -216,9 +217,10 @@ export default function ContentPage() {
                   <Card className="overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
                     <div className="aspect-video bg-muted relative overflow-hidden">
                       {item.image ? (
-                        <img 
+                        <Image 
                           src={item.image} 
                           alt={getContentTitle(item)}
+                          fill
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
@@ -302,9 +304,10 @@ export default function ContentPage() {
                 <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
                   <div className="aspect-video bg-muted relative overflow-hidden">
                     {item.image ? (
-                      <img 
+                      <Image 
                         src={item.image} 
                         alt={getContentTitle(item)}
+                        fill
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (

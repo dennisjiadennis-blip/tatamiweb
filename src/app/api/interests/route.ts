@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
-import { authConfig } from '@/lib/auth'
+import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { z } from 'zod'
 
@@ -13,7 +13,7 @@ const expressInterestSchema = z.object({
 // GET - 获取用户兴趣列表
 export async function GET() {
   try {
-    const session = await getServerSession(authConfig)
+    const session = await getServerSession(authOptions)
     
     if (!session?.user?.id) {
       return NextResponse.json(
@@ -72,7 +72,7 @@ export async function GET() {
 // POST - 表达兴趣
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authConfig)
+    const session = await getServerSession(authOptions)
     
     if (!session?.user?.id) {
       return NextResponse.json(

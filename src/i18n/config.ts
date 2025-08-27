@@ -29,7 +29,7 @@ export default getRequestConfig(async ({ locale }) => {
     // 如果没有locale参数，返回默认语言配置
     return {
       locale: defaultLocale,
-      messages: (await import(`./messages/${defaultLocale}.json`)).default,
+      messages: (await import(`./locales/${defaultLocale}.json`)).default,
       timeZone: 'Asia/Tokyo',
       now: new Date()
     }
@@ -41,7 +41,7 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     locale: validLocale,
-    messages: (await import(`./messages/${validLocale}.json`)).default,
+    messages: (await import(`./locales/${validLocale}.json`)).default,
     timeZone: 'Asia/Tokyo', // 统一使用东京时区
     now: new Date(),
     formats: {

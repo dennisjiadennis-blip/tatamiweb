@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
 import { MasterCard } from '@/components/masters/master-card'
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
+import Image from 'next/image'
 
 interface Master {
   id: string
@@ -48,7 +49,7 @@ export default function MastersPage() {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<'all' | 'trips' | 'conversations'>('all')
   const [page, setPage] = useState(1)
-  const [pagination, setPagination] = useState<MastersResponse['pagination'] | null>(null)
+  // const [pagination, setPagination] = useState<MastersResponse['pagination'] | null>(null) // Unused
   
   const params = useParams()
   const localeFromHook = useCurrentLocale()
@@ -56,7 +57,7 @@ export default function MastersPage() {
   
   // Use params locale as fallback if hook fails
   const locale = localeFromHook || localeFromParams || 'en'
-  const t = useTranslations()
+  // const t = useTranslations() // Unused
   const titleRef = useRef<HTMLHeadingElement>(null)
   
   // Ensure locale is properly detected from URL params as fallback
@@ -78,7 +79,7 @@ export default function MastersPage() {
       
       if (data.success) {
         setMasters(data.data.masters)
-        setPagination(data.data.pagination)
+        // setPagination(data.data.pagination) // Unused
       }
     } catch (error) {
       console.error('Failed to fetch masters:', error)
@@ -107,10 +108,10 @@ export default function MastersPage() {
     }
   }, [locale]) // Re-run when language changes
 
-  const handleSearch = (value: string) => {
-    setSearch(value)
-    setPage(1)
-  }
+  // const handleSearch = (value: string) => {
+  //   setSearch(value)
+  //   setPage(1)
+  // } // Unused
 
   const handleFilterChange = (newFilter: typeof filter) => {
     setFilter(newFilter)
@@ -204,9 +205,11 @@ export default function MastersPage() {
                 className="dossier-card"
                 onClick={() => window.location.href = `/${locale}/masters/${master.id}`}
               >
-                <img
+                <Image
                   src={master.heroImage || '/images/masters/placeholder.jpg'}
                   alt={master.name}
+                  width={400}
+                  height={500}
                   className="dossier-card-image"
                 />
                 <div className="dossier-card-overlay">
