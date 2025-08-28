@@ -22,10 +22,10 @@ export default function HomePage() {
       setShowVideo(true)
     }, 500)
     
-    // 2. 视频播放3秒后，LOGO与功能键淡入
+    // 2. 视频播放2秒后，LOGO与功能键淡入（但slogan还不出现）
     const showUITimer = setTimeout(() => {
       setShowUI(true)
-    }, 3500) // 500ms (delay) + 3000ms (video play time)
+    }, 2500) // 500ms (delay) + 2000ms (video play time)
     
     return () => {
       clearTimeout(startVideoTimer)
@@ -33,7 +33,7 @@ export default function HomePage() {
     }
   }, [])
 
-  // 3. 视频结束后，红色SLOGAN出现
+  // 3. 视频播放完成后（视频只播放一次），红色SLOGAN出现
   const handleVideoEnd = () => {
     setShowSlogan(true)
   }
@@ -105,7 +105,7 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* 3. 视频播放3秒后：LOGO与其他功能键淡入 + 蓝色按钮 */}
+      {/* 3. 视频播放2秒后：LOGO与其他功能键淡入 + 蓝色按钮 */}
       <AnimatePresence>
         {showUI && (
           <>
@@ -164,15 +164,7 @@ export default function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <h1
-              className="font-bold uppercase tracking-wide"
-              style={{
-                color: '#FF0000', // 鲜红/大红/亮红
-                fontSize: 'clamp(2rem, 5vw, 4rem)', // 与目前设计一致的字体大小
-                fontFamily: 'var(--font-family-heading)', // 使用项目定义的标题字体
-                lineHeight: '1.2'
-              }}
-            >
+            <h1 className="homepage-tagline">
               {commonT('journeySlogan')}
             </h1>
           </motion.div>
