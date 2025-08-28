@@ -164,21 +164,7 @@ export default function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <h1 
-              className="slogan-red-text"
-              style={{
-                fontFamily: 'var(--font-family-heading)',
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-                fontWeight: '700',
-                textAlign: 'center',
-                color: '#FF0000',
-                textShadow: '0 0 30px rgba(255, 0, 0, 1), 0 0 50px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 0, 0.6)',
-                animation: 'redGlow 3s ease-in-out infinite alternate',
-                letterSpacing: '0.02em',
-                lineHeight: '1.2',
-                textTransform: 'uppercase'
-              }}
-            >
+            <h1 style={{ color: 'red' }}>
               {commonT('journeySlogan')}
             </h1>
           </motion.div>
