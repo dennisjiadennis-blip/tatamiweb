@@ -635,7 +635,7 @@ button, input, select, textarea {
 .splash-text {
   font-family: var(--font-family-heading); /* Use Oswald heading font to match homepage */
   font-size: clamp(3rem, 8vw, 5.5rem); /* Match hero title size */
-  color: var(--color-parchment);
+  color: var(--color-vermilion);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;

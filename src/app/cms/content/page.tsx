@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -351,11 +352,13 @@ export default function ContentManagementPage() {
                       <TableCell>
                         <div className="flex items-center space-x-3">
                           {item.coverImage && (
-                            <div className="h-10 w-10 rounded-md overflow-hidden bg-muted">
-                              <img 
+                            <div className="relative h-10 w-10 rounded-md overflow-hidden bg-muted">
+                              <Image 
                                 src={item.coverImage} 
                                 alt={item.title}
-                                className="h-full w-full object-cover"
+                                fill
+                                className="object-cover"
+                                sizes="40px"
                               />
                             </div>
                           )}

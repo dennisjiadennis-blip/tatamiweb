@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
 import { useBreakpoint } from '@/lib/responsive'
-import { useCurrentLocale } from '@/i18n/hooks'
+import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
 import { useAuth } from '@/lib/hooks/use-auth'
 
 interface MobileNavigationProps {
@@ -18,6 +18,7 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
   const [activeTab, setActiveTab] = useState('home')
   const { isMobile } = useBreakpoint()
   const locale = useCurrentLocale()
+  const t = useTranslations()
   const { isAuthenticated, redirectToSignIn } = useAuth()
 
   // 监听路由变化关闭菜单
@@ -104,7 +105,11 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
           'hover:bg-background/90 transition-all duration-200',
           className
         )}
-        aria-label="Open menu"
+        aria-label={
+          locale === 'ja' ? 'メニューを開く' : 
+          locale === 'zh-TW' ? '開啟選單' : 
+          'Open menu'
+        }
       >
         <Icons.menu className="w-6 h-6" />
       </button>
@@ -140,7 +145,11 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-muted rounded-full transition-colors"
-                    aria-label="Close menu"
+                    aria-label={
+                      locale === 'ja' ? 'メニューを閉じる' : 
+                      locale === 'zh-TW' ? '關閉選單' : 
+                      'Close menu'
+                    }
                   >
                     <Icons.close className="w-5 h-5" />
                   </button>

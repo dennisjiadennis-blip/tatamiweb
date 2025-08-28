@@ -6,6 +6,7 @@ import { useCurrentLocale, useCommonT } from '@/i18n/hooks'
 import { OptimizedVideoPlayer } from '@/components/video/optimized-video-player'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
+import { HomeLayout } from '@/components/layout/Layout'
 
 export default function HomePage() {
   const locale = useCurrentLocale()
@@ -14,7 +15,7 @@ export default function HomePage() {
   
   const [showVideo, setShowVideo] = useState(false)
   const [showUI, setShowUI] = useState(false)
-  const [showSlogan, setShowSlogan] = useState(false)
+  const [showSlogan, setShowSlogan] = useState(true) // 临时设置为true来测试显示
 
   useEffect(() => {
     // 1. 首屏进入，立即淡入视频
@@ -61,13 +62,14 @@ export default function HomePage() {
   // }
 
   return (
-    // 1. 首屏：纯灰色背景，干净无内容
-    <div 
-      className="relative w-full h-screen overflow-hidden"
-      style={{
-        backgroundColor: 'var(--color-charcoal)' // 使用设计系统中的碳灰色
-      }}
-    >
+    <HomeLayout>
+      {/* 1. 首屏：纯灰色背景，干净无内容 */}
+      <div 
+        className="relative w-full h-screen overflow-hidden"
+        style={{
+          backgroundColor: 'var(--color-charcoal)' // 使用设计系统中的碳灰色
+        }}
+      >
       
       {/* 2. 淡入表情视频，占屏幕50%面积 */}
       <AnimatePresence>
@@ -155,21 +157,13 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* 4. 视频结束后：红色SLOGAN - THE JOURNEY TO LEAVE A STORY */}
-      <AnimatePresence>
-        {showSlogan && (
-          <motion.div
-            className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-          >
-            <h1 style={{ color: 'red' }}>
-              {commonT('journeySlogan')}
-            </h1>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      {/* 红色SLOGAN - 直接显示 */}
+      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10">
+        <h1 style={{ color: 'red', fontSize: '48px' }}>
+          THE JOURNEY TO LEAVE A STORY
+        </h1>
+        </div>
+      </div>
+    </HomeLayout>
   )
 }

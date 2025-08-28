@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { 
   responsive, 
@@ -157,13 +158,14 @@ export function ResponsiveImage({
     .join(', ')
 
   return (
-    <div className={cn(aspectClasses, className)}>
-      <img
+    <div className={cn(aspectClasses, 'relative', className)}>
+      <Image
         src={src}
         alt={alt}
+        fill
         sizes={sizesString}
-        className="absolute inset-0 w-full h-full object-cover"
-        loading={priority ? 'eager' : 'lazy'}
+        className="object-cover"
+        priority={priority}
       />
     </div>
   )
