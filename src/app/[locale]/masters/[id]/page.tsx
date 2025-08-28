@@ -10,6 +10,7 @@ import { MasterVideoIntro } from '@/components/masters/master-video-intro'
 import { InterestButton } from '@/components/masters/interest-button'
 import { useCurrentLocale } from '@/i18n/hooks'
 import { logger } from '@/lib/logger'
+import { BookingCTABar } from '@/components/ui/sticky-cta-bar'
 
 interface Master {
   id: string
@@ -391,6 +392,26 @@ export default function MasterPage({ params }: { params: Promise<{ id: string }>
           </div>
         </div>
       </section>
+
+      {/* 粘性CTA栏 - 滚动时出现 */}
+      {master.hasTripProduct && (
+        <BookingCTABar
+          price={`¥${master.tripPrice?.toLocaleString() || '50,000'}`}
+          onBookingClick={() => {
+            logger.info('Booking CTA clicked', { 
+              masterId: master.id, 
+              masterName: getName(),
+              price: master.tripPrice 
+            })
+            // 这里可以集成预约系统
+            window.scrollTo({ 
+              top: document.querySelector('.trip-booking')?.offsetTop || 0, 
+              behavior: 'smooth' 
+            })
+          }}
+          showAfterScroll={800} // 滚动800px后显示
+        />
+      )}
     </div>
   )
 }
