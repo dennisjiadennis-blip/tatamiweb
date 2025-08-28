@@ -247,13 +247,16 @@ button, input, select, textarea {
 
 .homepage-video {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;  /* 比现在小20% (100vw -> 80vw) */
+  height: 80vh; /* 比现在小20% (100vh -> 80vh) */
   object-fit: cover;
   opacity: 1;
   transition: opacity var(--duration-cinematic) var(--ease-out);
+  border-radius: 8px; /* 添加轻微圆角 */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3); /* 添加阴影增强深度 */
 }
 
 .homepage-tagline {
