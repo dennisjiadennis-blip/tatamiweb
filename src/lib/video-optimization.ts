@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+import { logger } from '@/lib/logger'
 import { MobileDetection, useNetworkStatus } from './mobile-performance'
 
 // 视频质量配置
@@ -161,7 +162,12 @@ export class VideoPreloadManager {
     }
 
     // 检查网络条件
-    const connection = (navigator as any).connection
+    const connection = (navigator as Navigator & {
+      connection?: {
+        saveData?: boolean
+        effectiveType?: string
+      }
+    }).connection
     if (connection && connection.saveData) {
       throw new Error('Data saver mode enabled, skipping preload')
     }
@@ -326,7 +332,7 @@ export class VideoStreamOptimizer {
       video.play()
     }
 
-    console.log(`📹 Video quality switched to: ${newQuality.resolution}`)
+    logger.info(`Video quality switched to: ${newQuality.resolution}`)
   }
 
   private buildVideoSrc(originalSrc: string, quality: VideoQualityConfig): string {
@@ -398,7 +404,7 @@ export function useSmartVideoLoader(src: string, options: {
     }
 
     loadVideo()
-  }, [src, connectionType, isSlowConnection, options.autoQuality, options.preload, options.priority])
+  }, [src, connectionType, isSlowConnection, options.autoQuality, options.preload, options.priority, currentQuality, preloadManager, qualitySelector])
 
   const switchQuality = useCallback((newQuality: VideoQualityConfig) => {
     setCurrentQuality(newQuality)

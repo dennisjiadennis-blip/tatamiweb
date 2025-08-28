@@ -219,7 +219,8 @@ export function OptimizedVideoPlayer({
       }
       setIsFullscreen(!isFullscreen)
     } catch (error) {
-      console.error('Fullscreen error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Fullscreen error:', error)
     }
   }, [isFullscreen])
 

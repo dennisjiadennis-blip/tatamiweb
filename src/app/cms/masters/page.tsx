@@ -110,7 +110,8 @@ export default function MastersManagementPage() {
       
       setMasters(mockMasters)
     } catch (error) {
-      console.error('Failed to fetch masters:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch masters:', error)
     } finally {
       setLoading(false)
     }
@@ -134,12 +135,14 @@ export default function MastersManagementPage() {
   const handleDelete = async (masterId: string) => {
     if (confirm('Are you sure you want to delete this master?')) {
       // 实现删除逻辑
-      console.log('Deleting master:', masterId)
+      // eslint-disable-next-line no-console
+    console.log('Deleting master:', masterId)
     }
   }
 
   const handleToggleStatus = async (masterId: string) => {
     // 实现状态切换逻辑
+    // eslint-disable-next-line no-console
     console.log('Toggling status for master:', masterId)
   }
 

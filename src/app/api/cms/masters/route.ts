@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission, logAdminAction } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // 获取达人列表
 export async function GET(request: NextRequest) {
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit
 
     // 构建查询条件
-    const where: any = {}
+    const where: Record<string, unknown> = {}
 
     if (search) {
       where.OR = [
@@ -84,7 +85,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Get Masters API Error:', error)
+    logger.error('Get Masters API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -162,7 +163,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(master, { status: 201 })
 
   } catch (error) {
-    console.error('Create Master API Error:', error)
+    logger.error('Create Master API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -175,7 +176,8 @@ function isValidURL(string: string): boolean {
   try {
     new URL(string)
     return true
-  } catch (_) {
+  } catch {
+    // URL validation failed
     return false
   }
 }

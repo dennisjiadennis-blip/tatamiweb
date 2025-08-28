@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { MobileDetection, useNetworkStatus } from './mobile-performance'
 
 // 图片格式和配置
@@ -83,7 +83,7 @@ export class ImageOptimizer {
     devicePixelRatio: number = 1
   ): ImageConfig {
     let quality = 80
-    let format: ImageConfig['format'] = 'jpeg'
+    const format: ImageConfig['format'] = 'jpeg'
 
     // Adjust quality based on network
     switch (connectionType) {
@@ -505,7 +505,7 @@ export function useImagePerformanceMonitor() {
     }))
   }, [])
 
-  const trackImageError = useCallback((src: string) => {
+  const trackImageError = useCallback(() => {
     setMetrics(prev => ({
       ...prev,
       totalImages: prev.totalImages + 1,

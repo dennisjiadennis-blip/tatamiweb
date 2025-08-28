@@ -312,7 +312,8 @@ export function CodeSplitComponent({
         setIsLoading(false)
       })
       .catch(error => {
-        console.error('Failed to load component:', error)
+        // eslint-disable-next-line no-console
+    console.error('Failed to load component:', error)
         setHasError(true)
         setIsLoading(false)
       })

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { logError } from '@/lib/logger'
 
 export async function GET() {
   try {
@@ -27,7 +28,7 @@ export async function GET() {
       timestamp: new Date().toISOString()
     })
   } catch (error) {
-    console.error('Database health check failed:', error)
+    logError('Database health check failed', { component: 'db-health-api' }, error as Error)
     
     return NextResponse.json({
       status: 'unhealthy',

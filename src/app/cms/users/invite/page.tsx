@@ -150,7 +150,8 @@ export default function InviteUserPage() {
       // 模拟API调用
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      console.log('Sending invites:', {
+      // eslint-disable-next-line no-console
+    console.log('Sending invites:', {
         invites,
         sendWelcomeEmail: formData.sendWelcomeEmail,
         customMessage: formData.customMessage
@@ -159,7 +160,8 @@ export default function InviteUserPage() {
       // 成功后跳转到用户列表
       router.push('/cms/users?invited=true')
     } catch (error) {
-      console.error('Failed to send invites:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to send invites:', error)
     } finally {
       setLoading(false)
     }

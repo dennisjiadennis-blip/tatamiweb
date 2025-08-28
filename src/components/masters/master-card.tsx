@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -86,10 +87,11 @@ export function MasterCard({ master, locale }: MasterCardProps) {
             <AspectRatio ratio={4 / 3}>
               {master.heroImage && !imageError ? (
                 <>
-                  <img
+                  <Image
                     src={master.heroImage}
                     alt={getName()}
-                    className={`object-cover w-full h-full transition-all duration-300 group-hover:scale-105 ${
+                    fill
+                    className={`object-cover transition-all duration-300 group-hover:scale-105 ${
                       imageLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => setImageLoaded(true)}

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { stat } from 'fs/promises'
+import { logError } from '@/lib/logger'
 
 // 视频文件的MIME类型映射
 const mimeTypes: Record<string, string> = {
@@ -86,7 +87,7 @@ export async function GET(
     })
 
   } catch (error) {
-    console.error('Video serving error:', error)
+    logError('Video serving error', { component: 'media-api', videoPath: params.path.join('/') }, error as Error)
     return new NextResponse('Internal Server Error', { status: 500 })
   }
 }

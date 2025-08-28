@@ -18,7 +18,7 @@ export interface SEOConfig {
   section?: string
   tags?: string[]
   robots?: string
-  schema?: any
+  schema?: Record<string, unknown>
 }
 
 // 多语言 SEO 配置
@@ -118,7 +118,7 @@ export class SEOOptimizer {
   }
 
   // 生成结构化数据
-  generateStructuredData(type: string, data: any): any {
+  generateStructuredData(type: string, data: Record<string, unknown>): Record<string, unknown> {
     const baseStructure = {
       '@context': 'https://schema.org',
       '@type': type
@@ -203,7 +203,7 @@ export class SEOOptimizer {
       case 'BreadcrumbList':
         return {
           ...baseStructure,
-          itemListElement: data.items.map((item: any, index: number) => ({
+          itemListElement: (data.items as Array<{ name: string; url: string }>).map((item, index: number) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item.name,
@@ -409,7 +409,7 @@ export class SEOAnalyzer {
 // 页面性能和 SEO 指标
 export class PagePerformanceTracker {
   private static instance: PagePerformanceTracker
-  private metrics: Map<string, any> = new Map()
+  private metrics: Map<string, unknown> = new Map()
 
   static getInstance(): PagePerformanceTracker {
     if (!PagePerformanceTracker.instance) {
@@ -511,9 +511,9 @@ export class PagePerformanceTracker {
 // SEO 数据管理 Hook
 import { useState, useEffect } from 'react'
 
-export function useSEOData(pageType: string, data: any) {
+export function useSEOData(pageType: string, data: Record<string, unknown>) {
   const [seoConfig, setSeoConfig] = useState<SEOConfig | null>(null)
-  const [structuredData, setStructuredData] = useState<any>(null)
+  const [structuredData, setStructuredData] = useState<Record<string, unknown> | null>(null)
   
   const optimizer = SEOOptimizer.getInstance()
 
@@ -581,8 +581,8 @@ export function useSEOData(pageType: string, data: any) {
 
 // 页面性能监控 Hook
 export function usePagePerformance() {
-  const [metrics, setMetrics] = useState<any>({})
-  const [report, setReport] = useState<any>(null)
+  const [metrics, setMetrics] = useState<Record<string, unknown>>({})
+  const [report, setReport] = useState<Record<string, unknown> | null>(null)
   
   const tracker = PagePerformanceTracker.getInstance()
 
@@ -603,8 +603,8 @@ export function usePagePerformance() {
 }
 
 // SEO 分析 Hook
-export function useSEOAnalysis(content: any) {
-  const [analysis, setAnalysis] = useState<any>(null)
+export function useSEOAnalysis(content: Record<string, unknown>) {
+  const [analysis, setAnalysis] = useState<Record<string, unknown> | null>(null)
   
   const analyzer = SEOAnalyzer.getInstance()
 

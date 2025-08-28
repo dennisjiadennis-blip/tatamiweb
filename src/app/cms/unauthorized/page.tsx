@@ -25,7 +25,7 @@ export default function UnauthorizedPage() {
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-muted-foreground">
-              You don't have permission to access this area of the CMS. 
+              You don&apos;t have permission to access this area of the CMS. 
               Please contact your administrator if you believe this is an error.
             </p>
             

@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { Icons } from '@/components/ui/icons'
 import { useSession } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
+import { logger } from '@/lib/logger'
 import { 
   Select,
   SelectContent,
@@ -61,7 +61,7 @@ const DEFAULT_TARGETS = [
 
 export default function ReferralsPage() {
   const { data: session } = useSession()
-  const t = useTranslations('profile')
+  // const t = useTranslations('profile') // Currently unused
   const [referralLinks, setReferralLinks] = useState<ReferralLink[]>([])
   const [loading, setLoading] = useState(true)
   const [createModalOpen, setCreateModalOpen] = useState(false)
@@ -119,7 +119,7 @@ export default function ReferralsPage() {
       
       setReferralLinks(mockLinks)
     } catch (error) {
-      console.error('Failed to fetch referral links:', error)
+      logger.error('Failed to fetch referral links', { error })
     } finally {
       setLoading(false)
     }
@@ -196,7 +196,7 @@ export default function ReferralsPage() {
       
       setCreateModalOpen(false)
     } catch (error) {
-      console.error('Failed to save referral link:', error)
+      logger.error('Failed to save referral link', { error })
     } finally {
       setFormLoading(false)
     }
@@ -213,7 +213,7 @@ export default function ReferralsPage() {
         )
       )
     } catch (error) {
-      console.error('Failed to toggle link status:', error)
+      logger.error('Failed to toggle link status', { error })
     }
   }
 
@@ -224,7 +224,7 @@ export default function ReferralsPage() {
       // 简单的成功提示 - 实际应用中可以使用toast
       alert('Referral link copied to clipboard!')
     } catch (error) {
-      console.error('Failed to copy to clipboard:', error)
+      logger.error('Failed to copy to clipboard', { error })
     }
   }
 

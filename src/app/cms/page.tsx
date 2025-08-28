@@ -94,7 +94,8 @@ export default function CMSDashboard() {
         }
       })
     } catch (error) {
-      console.error('Failed to fetch dashboard data:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch dashboard data:', error)
     } finally {
       setLoading(false)
     }

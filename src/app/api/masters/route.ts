@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { logError } from '@/lib/logger'
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
     
     const skip = (page - 1) * limit
 
-    const where: any = {
+    const where: Record<string, unknown> = {
       isActive: true,
     }
 
@@ -81,7 +82,7 @@ export async function GET(request: NextRequest) {
       }
     })
   } catch (error) {
-    console.error('Get masters error:', error)
+    logError('Get masters error', { component: 'masters-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }

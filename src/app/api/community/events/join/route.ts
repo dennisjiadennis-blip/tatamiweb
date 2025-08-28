@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { logger, reportError } from '@/lib/logger'
+import { logError } from '@/lib/logger'
 
 export async function POST(request: NextRequest) {
   try {
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    reportError(error as Error, { context: 'event_join_api' })
+    logError('Event join error', { component: 'community-events-join-api', action: 'post' }, error as Error)
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions)
     
@@ -123,7 +123,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    reportError(error as Error, { context: 'get_user_events_api' })
+    logError('Get user events error', { component: 'community-events-join-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }

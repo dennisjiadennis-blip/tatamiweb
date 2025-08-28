@@ -12,8 +12,9 @@ import { UserInterestsList } from '@/components/profile/user-interests-list'
 import { UserContributionStats } from '@/components/profile/user-contribution-stats'
 import { UserSettings } from '@/components/profile/user-settings'
 import { useAuth, useUserProfile } from '@/lib/hooks/use-auth'
-import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
+import { useCurrentLocale } from '@/i18n/hooks'
 import Image from 'next/image'
+import { logger } from '@/lib/logger'
 
 // 懒加载推荐链接组件
 const ReferralsPage = lazy(() => import('./referrals/page'))
@@ -34,7 +35,7 @@ interface UserProfile {
     id: string
     type: string
     value: number
-    metadata: any
+    metadata: Record<string, unknown>
     createdAt: string
   }>
   interests: Array<{
@@ -62,7 +63,7 @@ export default function ProfilePage() {
   const { user } = useAuth()
   const { getProfile } = useUserProfile()
   const locale = useCurrentLocale()
-  const t = useTranslations()
+  // const t = useTranslations() // Currently unused
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -71,7 +72,7 @@ export default function ProfilePage() {
         setProfile(profileData)
       } catch (err) {
         setError('Failed to load profile')
-        console.error('Profile error:', err)
+        logger.error('Profile error', { error: err })
       } finally {
         setLoading(false)
       }

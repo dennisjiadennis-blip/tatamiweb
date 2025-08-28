@@ -37,7 +37,7 @@ export function getRandomFromArray<T>(array: T[]): T {
 }
 
 // 多语言工具函数
-export function getLocalizedContent<T extends Record<string, any>>(
+export function getLocalizedContent<T extends Record<string, unknown>>(
   content: T,
   locale: string,
   field: string

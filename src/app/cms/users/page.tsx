@@ -138,7 +138,8 @@ export default function UsersManagementPage() {
       
       setUsers(mockUsers)
     } catch (error) {
-      console.error('Failed to fetch users:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch users:', error)
     } finally {
       setLoading(false)
     }
@@ -192,7 +193,8 @@ export default function UsersManagementPage() {
 
   const handleChangeRole = async (userId: string, newRole: string) => {
     if (confirm(`Are you sure you want to change this user's role to ${newRole}?`)) {
-      console.log('Changing role:', userId, newRole)
+      // eslint-disable-next-line no-console
+    console.log('Changing role:', userId, newRole)
       // 实现角色更改逻辑
     }
   }
@@ -200,19 +202,22 @@ export default function UsersManagementPage() {
   const handleToggleStatus = async (userId: string) => {
     const user = users.find(u => u.id === userId)
     if (user && confirm(`Are you sure you want to ${user.isActive ? 'deactivate' : 'activate'} this user?`)) {
-      console.log('Toggling status:', userId)
+      // eslint-disable-next-line no-console
+    console.log('Toggling status:', userId)
       // 实现状态切换逻辑
     }
   }
 
   const handleImpersonate = (userId: string) => {
     if (confirm('Are you sure you want to impersonate this user? This will log you in as them.')) {
-      console.log('Impersonating user:', userId)
+      // eslint-disable-next-line no-console
+    console.log('Impersonating user:', userId)
       // 实现用户模拟逻辑
     }
   }
 
   const handleSendPasswordReset = async (userId: string) => {
+    // eslint-disable-next-line no-console
     console.log('Sending password reset:', userId)
     // 实现密码重置逻辑
   }

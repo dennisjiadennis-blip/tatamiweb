@@ -36,7 +36,7 @@ export async function GET() {
         'Cache-Control': 'no-store, max-age=0',
       }
     })
-  } catch (error) {
+  } catch {
     // Return null instead of error to prevent client-side error logs
     return NextResponse.json(null, { 
       status: 200,

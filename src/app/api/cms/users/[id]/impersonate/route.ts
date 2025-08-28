@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-import { getCurrentUser, hasPermission, Permission, logAdminAction, UserRole } from '@/lib/cms/auth'
+import { getCurrentUser, logAdminAction, UserRole } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 
@@ -89,7 +90,7 @@ export async function POST(
     })
 
   } catch (error) {
-    console.error('Impersonate User API Error:', error)
+    logger.error('Impersonate User API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -130,7 +131,7 @@ export async function DELETE(
     })
 
   } catch (error) {
-    console.error('End Impersonation API Error:', error)
+    logger.error('End Impersonation API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

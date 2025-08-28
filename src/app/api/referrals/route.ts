@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { prisma } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
 import { z } from 'zod'
+import { logError } from '@/lib/logger'
 
 // 验证推广链接创建数据
 const CreateReferralLinkSchema = z.object({
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit
 
     // 构建查询条件
-    const where: any = {
+    const where: Record<string, unknown> = {
       userId: session.user.id
     }
 
@@ -111,7 +112,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Get Referral Links API Error:', error)
+    logError('Get Referral Links API Error', { component: 'referrals-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -177,7 +178,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.error('Create Referral Link API Error:', error)
+    logError('Create Referral Link API Error', { component: 'referrals-api', action: 'post' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

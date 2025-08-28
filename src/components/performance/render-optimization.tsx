@@ -497,7 +497,8 @@ export const PerformanceWrapper = memo<PerformanceWrapperProps>(({
   useEffect(() => {
     if (trackRenders) {
       renderCountRef.current += 1
-      console.log(`🔄 Component "${name}" rendered ${renderCountRef.current} times`)
+      // eslint-disable-next-line no-console
+    console.log(`🔄 Component "${name}" rendered ${renderCountRef.current} times`)
     }
   })
 

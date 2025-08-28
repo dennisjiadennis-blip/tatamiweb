@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { z } from 'zod'
+import { logError } from '@/lib/logger'
 
 // 用户资料更新验证模式
 const updateProfileSchema = z.object({
@@ -74,7 +75,7 @@ export async function GET() {
       }
     })
   } catch (error) {
-    console.error('Get profile error:', error)
+    logError('Get profile error', { component: 'user-profile-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }
@@ -125,7 +126,7 @@ export async function PUT(request: NextRequest) {
       )
     }
     
-    console.error('Update profile error:', error)
+    logError('Update profile error', { component: 'user-profile-api', action: 'update' }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }

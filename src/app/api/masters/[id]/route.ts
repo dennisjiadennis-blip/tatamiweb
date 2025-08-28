@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { logError } from '@/lib/logger'
 
 interface RouteContext {
   params: Promise<{ id: string }>
@@ -99,7 +100,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
       }
     })
   } catch (error) {
-    console.error('Get master error:', error)
+    logError('Get master error', { component: 'masters-detail-api', action: 'get', masterId: await params.then(p => p.id) }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }

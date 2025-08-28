@@ -160,12 +160,14 @@ export default function CreateMasterPage() {
       // 模拟API调用
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      console.log('Creating master:', formData)
+      // eslint-disable-next-line no-console
+    console.log('Creating master:', formData)
       
       // 成功后跳转到列表页
       router.push('/cms/masters')
     } catch (error) {
-      console.error('Failed to create master:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to create master:', error)
     } finally {
       setLoading(false)
     }

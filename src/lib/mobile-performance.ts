@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState, useCallback, useRef } from 'react'
+import { logger } from '@/lib/logger'
 
 // 移动端性能监控工具
 export class MobilePerformanceMonitor {
@@ -30,7 +31,7 @@ export class MobilePerformanceMonitor {
       
       // 在开发环境输出性能数据
       if (process.env.NODE_ENV === 'development') {
-        console.log(`📱 Mobile Performance: ${name} took ${duration.toFixed(2)}ms`)
+        logger.info(`Mobile Performance: ${name} took ${duration.toFixed(2)}ms`)
       }
       
       return duration
@@ -85,7 +86,11 @@ export const MobileDetection = {
   // 检测网络连接类型
   getConnectionType: () => {
     if (typeof navigator === 'undefined' || !('connection' in navigator)) return 'unknown'
-    const connection = (navigator as any).connection
+    const connection = (navigator as Navigator & {
+      connection?: {
+        effectiveType?: string
+      }
+    }).connection
     return connection?.effectiveType || 'unknown'
   },
 
@@ -107,7 +112,7 @@ export const BundleAnalyzer = {
     const LazyComponent = React.lazy(importFn as any)
     
     return (props: T) => (
-      // @ts-ignore - React types issue
+      // @ts-expect-error - React types issue
       React.createElement(React.Suspense, 
         { fallback: fallback || React.createElement('div', null, 'Loading...') },
         React.createElement(LazyComponent, props)
@@ -152,7 +157,7 @@ export const BundleAnalyzer = {
 // 内存优化工具
 export const MemoryOptimizer = {
   // 防抖函数优化版
-  debounce: <T extends (...args: any[]) => any>(
+  debounce: <T extends (...args: never[]) => unknown>(
     func: T,
     wait: number,
     immediate = false
@@ -165,15 +170,15 @@ export const MemoryOptimizer = {
       if (timeout) clearTimeout(timeout)
       timeout = setTimeout(() => {
         timeout = null
-        if (!immediate) func.apply(null, args)
+        if (!immediate) func(...args)
       }, wait)
       
-      if (callNow) func.apply(null, args)
+      if (callNow) func(...args)
     }) as T
   },
 
   // 节流函数优化版
-  throttle: <T extends (...args: any[]) => any>(
+  throttle: <T extends (...args: never[]) => unknown>(
     func: T,
     limit: number
   ): T => {
@@ -181,7 +186,7 @@ export const MemoryOptimizer = {
     
     return ((...args: Parameters<T>) => {
       if (!inThrottle) {
-        func.apply(null, args)
+        func(...args)
         inThrottle = true
         setTimeout(() => inThrottle = false, limit)
       }
@@ -244,12 +249,22 @@ export function useThrottle<T>(value: T, limit: number): T {
 
 // 移动端内存使用监控hook
 export function useMemoryMonitor() {
-  const [memoryInfo, setMemoryInfo] = useState<any>(null)
+  const [memoryInfo, setMemoryInfo] = useState<{
+    usedJSHeapSize?: number
+    totalJSHeapSize?: number
+    jsHeapSizeLimit?: number
+  } | null>(null)
 
   useEffect(() => {
     const updateMemoryInfo = () => {
       if ('memory' in performance) {
-        setMemoryInfo((performance as any).memory)
+        setMemoryInfo((performance as Performance & {
+          memory?: {
+            usedJSHeapSize: number
+            totalJSHeapSize: number
+            jsHeapSizeLimit: number
+          }
+        }).memory)
       }
     }
 

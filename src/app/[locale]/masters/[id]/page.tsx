@@ -8,8 +8,8 @@ import { Badge } from '@/components/ui/badge'
 import { Icons } from '@/components/ui/icons'
 import { MasterVideoIntro } from '@/components/masters/master-video-intro'
 import { InterestButton } from '@/components/masters/interest-button'
-import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
-import { useAuth } from '@/lib/hooks/use-auth'
+import { useCurrentLocale } from '@/i18n/hooks'
+import { logger } from '@/lib/logger'
 
 interface Master {
   id: string
@@ -48,7 +48,7 @@ interface Master {
   tripDescriptionEn?: string
   tripDescriptionJa?: string
   contactEmail?: string
-  socialLinks?: any
+  socialLinks?: Record<string, string>
   availableSlots?: number
   createdAt: string
   updatedAt: string
@@ -94,6 +94,7 @@ export default function MasterPage({ params }: { params: Promise<{ id: string }>
           setError(result.error?.message || 'Failed to load master')
         }
       } catch (err: unknown) {
+        logger.error('Failed to load master', { error: err, masterId: resolvedParams.id })
         setError('Failed to load master')
       } finally {
         setLoading(false)

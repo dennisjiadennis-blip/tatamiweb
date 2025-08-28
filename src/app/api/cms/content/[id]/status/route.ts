@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission, logAdminAction } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // 更新内容状态
 export async function PATCH(
@@ -44,7 +45,7 @@ export async function PATCH(
     }
 
     // 准备更新数据
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       status,
       lastEditedBy: user.id
     }
@@ -79,7 +80,7 @@ export async function PATCH(
     return NextResponse.json(content)
 
   } catch (error) {
-    console.error('Update Content Status API Error:', error)
+    logger.error('Update Content Status API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

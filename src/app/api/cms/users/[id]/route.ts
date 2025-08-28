@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission, logAdminAction, UserRole } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // 获取单个用户
 export async function GET(
@@ -61,7 +62,7 @@ export async function GET(
     })
 
   } catch (error) {
-    console.error('Get User API Error:', error)
+    logger.error('Get User API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -115,7 +116,7 @@ export async function PUT(
     }
 
     // 准备更新数据
-    const updateData: any = {}
+    const updateData: Record<string, unknown> = {}
     
     if (body.name !== undefined) updateData.name = body.name
     if (body.role !== undefined) updateData.role = body.role
@@ -157,7 +158,7 @@ export async function PUT(
     return NextResponse.json(updatedUser)
 
   } catch (error) {
-    console.error('Update User API Error:', error)
+    logger.error('Update User API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -233,7 +234,7 @@ export async function DELETE(
     })
 
   } catch (error) {
-    console.error('Delete User API Error:', error)
+    logger.error('Delete User API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -242,7 +243,7 @@ export async function DELETE(
 }
 
 // 辅助函数：获取变更字段
-function getChangedFields(original: any, updated: any): string[] {
+function getChangedFields(original: Record<string, unknown>, updated: Record<string, unknown>): string[] {
   const changes: string[] = []
   
   Object.keys(updated).forEach(key => {

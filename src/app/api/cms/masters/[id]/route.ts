@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission, logAdminAction } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // 获取单个达人
 export async function GET(
@@ -46,7 +47,7 @@ export async function GET(
     return NextResponse.json(formattedMaster)
 
   } catch (error) {
-    console.error('Get Master API Error:', error)
+    logger.error('Get Master API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -91,7 +92,7 @@ export async function PUT(
     }
 
     // 准备更新数据
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       name: body.name,
       title: body.title,
       nameEn: body.nameEn || null,
@@ -141,7 +142,7 @@ export async function PUT(
     return NextResponse.json(master)
 
   } catch (error) {
-    console.error('Update Master API Error:', error)
+    logger.error('Update Master API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -220,7 +221,7 @@ export async function DELETE(
     })
 
   } catch (error) {
-    console.error('Delete Master API Error:', error)
+    logger.error('Delete Master API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -233,13 +234,14 @@ function isValidURL(string: string): boolean {
   try {
     new URL(string)
     return true
-  } catch (_) {
+  } catch {
+    // URL validation failed
     return false
   }
 }
 
 // 辅助函数：获取变更字段
-function getChangedFields(original: any, updated: any): string[] {
+function getChangedFields(original: Record<string, unknown>, updated: Record<string, unknown>): string[] {
   const changes: string[] = []
   
   Object.keys(updated).forEach(key => {

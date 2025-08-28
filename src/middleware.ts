@@ -8,7 +8,7 @@ const intlMiddleware = createMiddleware({
   localePrefix: 'always'
 })
 
-export default function middleware(request: any) {
+export default function middleware(request: Request) {
   // 简化中间件 - 仅处理国际化
   return intlMiddleware(request)
 }

@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import EmailProvider from 'next-auth/providers/email'
 import { db } from '@/lib/db'
 import { nanoid } from 'nanoid'
-import { logger, reportError } from '@/lib/logger'
+import { logError } from '@/lib/logger'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -176,7 +176,7 @@ export const authOptions: NextAuthOptions = {
           }
           return true
         } catch (error) {
-          reportError(error as Error, { provider: 'google', context: 'signIn' })
+          logError('Google sign in error', { component: 'auth', provider: 'google' }, error as Error)
           return false
         }
       }
@@ -209,7 +209,7 @@ export const authOptions: NextAuthOptions = {
             }),
           },
         }).catch(error => {
-          reportError(error, { context: 'login_contribution', userId: message.user.id })
+          logError('Login contribution error', { component: 'auth', userId: message.user.id }, error as Error)
         })
       }
     },
@@ -231,7 +231,7 @@ export const authOptions: NextAuthOptions = {
             }),
           },
         }).catch(error => {
-          reportError(error, { context: 'welcome_contribution', userId: message.user.id })
+          logError('Welcome contribution error', { component: 'auth', userId: message.user.id }, error as Error)
         })
       }
     },
@@ -248,7 +248,7 @@ export const authOptions: NextAuthOptions = {
           code !== 'CLIENT_FETCH_ERROR' && 
           !code.toString().includes('Aborted') &&
           !code.toString().includes('Not authenticated')) {
-        console.error(`NextAuth Server Error [${code}]:`, metadata)
+        logError(`NextAuth Server Error [${code}]`, { component: 'auth', code: code.toString() }, new Error(metadata?.toString() || 'Unknown error'))
       }
     },
     warn: () => {}, // 禁用警告日志

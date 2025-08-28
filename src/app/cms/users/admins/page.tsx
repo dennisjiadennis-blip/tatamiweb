@@ -167,7 +167,8 @@ export default function AdminsManagementPage() {
       
       setAdmins(mockAdmins)
     } catch (error) {
-      console.error('Failed to fetch admins:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch admins:', error)
     } finally {
       setLoading(false)
     }
@@ -197,16 +198,19 @@ export default function AdminsManagementPage() {
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       if (editingAdmin) {
-        console.log('Updating admin:', editingAdmin.id, formData)
+        // eslint-disable-next-line no-console
+    console.log('Updating admin:', editingAdmin.id, formData)
       } else {
-        console.log('Creating admin:', formData)
+        // eslint-disable-next-line no-console
+    console.log('Creating admin:', formData)
       }
       
       setDialogOpen(false)
       resetForm()
       fetchAdmins()
     } catch (error) {
-      console.error('Failed to save admin:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to save admin:', error)
     }
   }
 
@@ -233,13 +237,15 @@ export default function AdminsManagementPage() {
 
   const handleDelete = async (adminId: string) => {
     if (confirm('Are you sure you want to remove this administrator?')) {
-      console.log('Deleting admin:', adminId)
+      // eslint-disable-next-line no-console
+    console.log('Deleting admin:', adminId)
       // 实现删除逻辑
       fetchAdmins()
     }
   }
 
   const handleToggleStatus = async (adminId: string) => {
+    // eslint-disable-next-line no-console
     console.log('Toggling admin status:', adminId)
     // 实现状态切换逻辑
     fetchAdmins()

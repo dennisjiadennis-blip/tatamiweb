@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
 import { useAuth } from '@/lib/hooks/use-auth'
 import { useInterests } from '@/lib/hooks/use-auth'
+import { logError } from '@/lib/logger'
 
 interface InterestButtonProps {
   masterId: string
@@ -38,7 +39,7 @@ export function InterestButton({ masterId, masterName, interestCount }: Interest
           setIsExpressed(hasExpressed)
         }
       } catch (error) {
-        console.error('Failed to check interest:', error)
+        logError('Failed to check interest', { component: 'interest-button', masterId }, error as Error)
       }
     }
 
@@ -66,7 +67,7 @@ export function InterestButton({ masterId, masterName, interestCount }: Interest
         setTimeout(() => setShowSuccess(false), 3000)
       }
     } catch (error) {
-      console.error('Failed to express interest:', error)
+      logError('Failed to express interest', { component: 'interest-button', masterId }, error as Error)
     } finally {
       setIsLoading(false)
     }

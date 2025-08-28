@@ -117,7 +117,8 @@ export default function ContentManagementPage() {
       
       setContent(mockContent)
     } catch (error) {
-      console.error('Failed to fetch content:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch content:', error)
     } finally {
       setLoading(false)
     }
@@ -169,18 +170,21 @@ export default function ContentManagementPage() {
   }
 
   const handleDuplicate = async (contentId: string) => {
+    // eslint-disable-next-line no-console
     console.log('Duplicating content:', contentId)
     // 实现复制逻辑
   }
 
   const handleChangeStatus = async (contentId: string, newStatus: string) => {
+    // eslint-disable-next-line no-console
     console.log('Changing status:', contentId, newStatus)
     // 实现状态更改逻辑
   }
 
   const handleDelete = async (contentId: string) => {
     if (confirm('Are you sure you want to delete this content?')) {
-      console.log('Deleting content:', contentId)
+      // eslint-disable-next-line no-console
+    console.log('Deleting content:', contentId)
       // 实现删除逻辑
     }
   }

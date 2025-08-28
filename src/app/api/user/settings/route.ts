@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { logger, reportError } from '@/lib/logger'
+import { logError, logger } from '@/lib/logger'
 
 interface UserSettings {
   name?: string
@@ -18,7 +18,7 @@ interface UserSettings {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions)
     
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    reportError(error as Error, { context: 'get_user_settings_api' })
+    logError('Get user settings error', { component: 'user-settings-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }
@@ -90,7 +90,7 @@ export async function PATCH(request: NextRequest) {
     
     // Validate input
     const allowedFields = ['name', 'bio', 'location', 'locale', 'preferences']
-    const updateData: any = {}
+    const updateData: Record<string, unknown> = {}
 
     for (const [key, value] of Object.entries(body)) {
       if (allowedFields.includes(key) && value !== undefined) {
@@ -147,7 +147,7 @@ export async function PATCH(request: NextRequest) {
       },
     }).catch(error => {
       // Don't fail the request if contribution logging fails
-      reportError(error, { context: 'profile_update_contribution' })
+      logError('Profile update contribution error', { component: 'user-settings-api', action: 'contribution' }, error as Error)
     })
 
     return NextResponse.json({
@@ -157,7 +157,7 @@ export async function PATCH(request: NextRequest) {
     })
 
   } catch (error) {
-    reportError(error as Error, { context: 'update_user_settings_api' })
+    logError('Update user settings error', { component: 'user-settings-api', action: 'patch' }, error as Error)
     return NextResponse.json(
       { success: false, message: 'Internal server error' },
       { status: 500 }

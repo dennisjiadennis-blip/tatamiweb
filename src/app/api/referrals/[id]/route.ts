@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { prisma } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
 import { z } from 'zod'
+import { logError } from '@/lib/logger'
 
 // 验证推广链接更新数据
 const UpdateReferralLinkSchema = z.object({
@@ -91,7 +92,7 @@ export async function GET(
     return NextResponse.json(enrichedLink)
 
   } catch (error) {
-    console.error('Get Referral Link API Error:', error)
+    logError('Get Referral Link API Error', { component: 'referrals-detail-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -166,7 +167,7 @@ export async function PATCH(
       )
     }
 
-    console.error('Update Referral Link API Error:', error)
+    logError('Update Referral Link API Error', { component: 'referrals-detail-api', action: 'patch' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -220,7 +221,7 @@ export async function DELETE(
     return NextResponse.json({ message: 'Referral link deleted successfully' })
 
   } catch (error) {
-    console.error('Delete Referral Link API Error:', error)
+    logError('Delete Referral Link API Error', { component: 'referrals-detail-api', action: 'delete' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

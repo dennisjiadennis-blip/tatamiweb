@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { z } from 'zod'
+import { logError } from '@/lib/logger'
 
 // 兴趣表达验证模式
 const expressInterestSchema = z.object({
@@ -61,7 +62,7 @@ export async function GET() {
       }
     })
   } catch (error) {
-    console.error('Get interests error:', error)
+    logError('Get interests error', { component: 'interests-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }
@@ -162,7 +163,7 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    console.error('Express interest error:', error)
+    logError('Express interest error', { component: 'interests-api', action: 'post' }, error as Error)
     return NextResponse.json(
       { success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } },
       { status: 500 }

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { logError } from '@/lib/logger'
 
 export async function GET() {
   const health = {
@@ -21,7 +22,7 @@ export async function GET() {
   } catch (error) {
     health.status = 'degraded'
     health.checks.database = 'disconnected'
-    console.error('Database health check failed:', error)
+    logError('Database health check failed', { component: 'health-api' }, error as Error)
   }
 
   // 检查内存使用

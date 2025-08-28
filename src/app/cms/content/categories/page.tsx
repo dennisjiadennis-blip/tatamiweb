@@ -137,7 +137,8 @@ export default function CategoriesManagementPage() {
       
       setCategories(mockCategories)
     } catch (error) {
-      console.error('Failed to fetch categories:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to fetch categories:', error)
     } finally {
       setLoading(false)
     }
@@ -209,10 +210,12 @@ export default function CategoriesManagementPage() {
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       if (editingCategory) {
-        console.log('Updating category:', editingCategory.id, formData)
+        // eslint-disable-next-line no-console
+    console.log('Updating category:', editingCategory.id, formData)
         // 更新逻辑
       } else {
-        console.log('Creating category:', formData)
+        // eslint-disable-next-line no-console
+    console.log('Creating category:', formData)
         // 创建逻辑
       }
       
@@ -220,7 +223,8 @@ export default function CategoriesManagementPage() {
       resetForm()
       fetchCategories()
     } catch (error) {
-      console.error('Failed to save category:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to save category:', error)
     }
   }
 
@@ -251,22 +255,26 @@ export default function CategoriesManagementPage() {
   const handleDelete = async (categoryId: string) => {
     if (confirm('Are you sure you want to delete this category?')) {
       try {
-        console.log('Deleting category:', categoryId)
+        // eslint-disable-next-line no-console
+    console.log('Deleting category:', categoryId)
         // 删除逻辑
         fetchCategories()
       } catch (error) {
-        console.error('Failed to delete category:', error)
+        // eslint-disable-next-line no-console
+    console.error('Failed to delete category:', error)
       }
     }
   }
 
   const handleToggleStatus = async (categoryId: string) => {
     try {
-      console.log('Toggling category status:', categoryId)
+      // eslint-disable-next-line no-console
+    console.log('Toggling category status:', categoryId)
       // 状态切换逻辑
       fetchCategories()
     } catch (error) {
-      console.error('Failed to toggle category status:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to toggle category status:', error)
     }
   }
 

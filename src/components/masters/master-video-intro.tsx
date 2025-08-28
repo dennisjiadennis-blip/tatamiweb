@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
+import { logError } from '@/lib/logger'
 
 interface MasterVideoIntroProps {
   videoUrl: string
@@ -29,7 +30,7 @@ export function MasterVideoIntro({ videoUrl, masterName }: MasterVideoIntroProps
         setIsLoading(false)
       }
     } catch (error) {
-      console.error('Video play error:', error)
+      logError('Video play error', { component: 'master-video-intro', masterName, videoUrl }, error as Error)
       setIsLoading(false)
     }
   }

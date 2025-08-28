@@ -83,7 +83,8 @@ export function GuestFriendlyMenu() {
         window.location.href = `/${locale}`
       }
     } catch (error) {
-      console.error('Sign out error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Sign out error:', error)
     } finally {
       setIsSigningOut(false)
     }

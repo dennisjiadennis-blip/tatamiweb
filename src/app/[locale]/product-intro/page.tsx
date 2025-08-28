@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from '@/i18n/hooks'
 import { OptimizedVideoPlayer } from '@/components/video/optimized-video-player'
@@ -12,13 +12,13 @@ export default function ProductIntroPage() {
   const [currentSubtitle, setCurrentSubtitle] = useState(0)
 
   // 5. 产品介绍文字 - 与现有视频展示内容一致
-  const productContent = [
+  const productContent = useMemo(() => [
     t('descriptionLines.0'),
     t('descriptionLines.1'),
     t('descriptionLines.2'), 
     t('descriptionLines.3'),
     t('coreConcept')
-  ]
+  ], [t])
 
   useEffect(() => {
     // 4. 视频播放2秒后：字幕形式出现产品介绍文字
@@ -28,9 +28,9 @@ export default function ProductIntroPage() {
     }, 2000)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [startSubtitleSequence])
 
-  const startSubtitleSequence = () => {
+  const startSubtitleSequence = useCallback(() => {
     let delay = 0
     
     productContent.forEach((_, index) => {
@@ -41,7 +41,7 @@ export default function ProductIntroPage() {
       // 5. 播放速度：比现在慢1.5倍
       delay += 4500 // 1.5倍慢的播放间隔
     })
-  }
+  }, [productContent])
 
   return (
     <div className="relative w-full h-screen bg-black flex items-center justify-center">

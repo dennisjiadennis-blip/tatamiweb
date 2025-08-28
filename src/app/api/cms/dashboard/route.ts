@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // 验证用户权限
     const user = await getCurrentUser()
@@ -155,7 +156,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(dashboardData)
 
   } catch (error) {
-    console.error('Dashboard API Error:', error)
+    logger.error('Dashboard API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

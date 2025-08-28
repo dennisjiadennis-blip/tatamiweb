@@ -154,12 +154,14 @@ export default function CreateContentPage() {
       // 模拟API调用
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      console.log('Creating content:', formData)
+      // eslint-disable-next-line no-console
+    console.log('Creating content:', formData)
       
       // 成功后跳转到列表页
       router.push('/cms/content')
     } catch (error) {
-      console.error('Failed to create content:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to create content:', error)
     } finally {
       setLoading(false)
     }
@@ -172,10 +174,12 @@ export default function CreateContentPage() {
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000))
-      console.log('Saving draft:', draftData)
+      // eslint-disable-next-line no-console
+    console.log('Saving draft:', draftData)
       // 显示保存成功的提示
     } catch (error) {
-      console.error('Failed to save draft:', error)
+      // eslint-disable-next-line no-console
+    console.error('Failed to save draft:', error)
     } finally {
       setLoading(false)
     }

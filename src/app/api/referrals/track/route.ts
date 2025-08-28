@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { headers } from 'next/headers'
 import { UAParser } from 'ua-parser-js'
+import { logError, logWarn } from '@/lib/logger'
 
 // 追踪推广链接点击
 export async function POST(request: NextRequest) {
@@ -45,11 +46,10 @@ export async function POST(request: NextRequest) {
     const parser = new UAParser(userAgent)
     const device = parser.getDevice()
     const browser = parser.getBrowser()
-    const os = parser.getOS()
 
     // 地理位置信息 (需要集成地理位置API服务)
-    let country = null
-    let city = null
+    const country = null
+    const city = null
     
     // 这里可以集成如MaxMind GeoIP或ipapi.co等服务
     // 示例实现：
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       // country = geoData.country
       // city = geoData.city
     } catch (error) {
-      console.warn('Failed to get geolocation:', error)
+      logWarn('Failed to get geolocation', { component: 'referrals-track-api', ip })
     }
 
     // 记录点击
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Track Referral Click API Error:', error)
+    logError('Track Referral Click API Error', { component: 'referrals-track-api', action: 'post' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -215,7 +215,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Get Referral Stats API Error:', error)
+    logError('Get Referral Stats API Error', { component: 'referrals-track-api', action: 'get' }, error as Error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

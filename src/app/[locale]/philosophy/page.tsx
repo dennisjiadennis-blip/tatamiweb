@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 // import { Button } from '@/components/ui/button' // Unused
 // import { Card, CardContent } from '@/components/ui/card' // Unused
-import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
+import { useCurrentLocale } from '@/i18n/hooks'
 
 export default function PhilosophyPage() {
   const locale = useCurrentLocale()

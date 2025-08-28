@@ -24,7 +24,8 @@ export function useAuth() {
         callbackUrl: callbackUrl || `/${locale}`,
       })
     } catch (error) {
-      console.error('Google sign in error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Google sign in error:', error)
     } finally {
       setIsLoading(false)
     }
@@ -46,7 +47,8 @@ export function useAuth() {
       
       return result
     } catch (error) {
-      console.error('Email sign in error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Email sign in error:', error)
       return { error: 'Sign in failed' }
     } finally {
       setIsLoading(false)
@@ -61,7 +63,8 @@ export function useAuth() {
         callbackUrl: callbackUrl || `/${locale}`,
       })
     } catch (error) {
-      console.error('Sign out error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Sign out error:', error)
     } finally {
       setIsLoading(false)
     }
@@ -137,7 +140,8 @@ export function useUserProfile() {
 
       return result.data
     } catch (error) {
-      console.error('Update profile error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Update profile error:', error)
       throw error
     } finally {
       setIsUpdating(false)
@@ -159,7 +163,8 @@ export function useUserProfile() {
 
       return result.data
     } catch (error) {
-      console.error('Get profile error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Get profile error:', error)
       throw error
     }
   }
@@ -200,7 +205,8 @@ export function useInterests() {
 
       return result.data
     } catch (error) {
-      console.error('Express interest error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Express interest error:', error)
       throw error
     } finally {
       setIsExpressing(false)
@@ -222,7 +228,8 @@ export function useInterests() {
 
       return result.data
     } catch (error) {
-      console.error('Get interests error:', error)
+      // eslint-disable-next-line no-console
+    console.error('Get interests error:', error)
       throw error
     }
   }

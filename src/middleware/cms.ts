@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 import { prisma } from '@/lib/db'
 import { UserRole } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // CMS路由保护中间件
 export async function withCMSAuth(
@@ -48,7 +49,7 @@ export async function withCMSAuth(
     return response
 
   } catch (error) {
-    console.error('CMS Auth Middleware Error:', error)
+    logger.error('CMS Auth Middleware Error', { error })
     return NextResponse.redirect(new URL('/auth/signin', request.url))
   }
 }
@@ -89,7 +90,7 @@ export async function withAPIAuth(
     return null // 继续处理请求
 
   } catch (error) {
-    console.error('API Auth Error:', error)
+    logger.error('API Auth Error', { error })
     return new NextResponse('Internal Server Error', { status: 500 })
   }
 }

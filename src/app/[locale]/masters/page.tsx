@@ -1,14 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useParams } from 'next/navigation'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Icons } from '@/components/ui/icons'
-import { MasterCard } from '@/components/masters/master-card'
 import { useCurrentLocale, useTranslations } from '@/i18n/hooks'
 import Image from 'next/image'
+import { logger } from '@/lib/logger'
 
 interface Master {
   id: string
@@ -31,17 +28,6 @@ interface Master {
   }
 }
 
-interface MastersResponse {
-  masters: Master[]
-  pagination: {
-    page: number
-    limit: number
-    totalCount: number
-    totalPages: number
-    hasNextPage: boolean
-    hasPrevPage: boolean
-  }
-}
 
 export default function MastersPage() {
   const [masters, setMasters] = useState<Master[]>([])
@@ -82,7 +68,7 @@ export default function MastersPage() {
         // setPagination(data.data.pagination) // Unused
       }
     } catch (error) {
-      console.error('Failed to fetch masters:', error)
+      logger.error('Failed to fetch masters', { error })
     } finally {
       setLoading(false)
     }
@@ -106,7 +92,7 @@ export default function MastersPage() {
         title.appendChild(span)
       })
     }
-  }, [locale]) // Re-run when language changes
+  }, [locale, getLocalizedText]) // Re-run when language changes
 
   // const handleSearch = (value: string) => {
   //   setSearch(value)
@@ -122,7 +108,7 @@ export default function MastersPage() {
   const mastersT = useTranslations('masters')
   
   // Helper function to get localized master page text
-  const getLocalizedText = (key: string) => {
+  const getLocalizedText = useCallback((key: string) => {
     const textMap = {
       title: locale === 'zh-TW' ? '情報檔案' : locale === 'ja' ? 'インテリジェンス・ドシエ' : 'Intelligence Dossier',
       subtitle: mastersT('subtitle'),
@@ -132,7 +118,7 @@ export default function MastersPage() {
       clearFilters: mastersT('clearFilters')
     }
     return textMap[key as keyof typeof textMap] || key
-  }
+  }, [locale, mastersT])
 
   return (
     <div className="masters-page-container">

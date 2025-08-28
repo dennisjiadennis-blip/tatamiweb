@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { getCurrentUser, hasPermission, Permission, logAdminAction, UserRole } from '@/lib/cms/auth'
+import { logger } from '@/lib/logger'
 
 // 更新用户角色
 export async function PATCH(
@@ -67,7 +68,7 @@ export async function PATCH(
     }
 
     // 准备更新数据
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       role,
       permissions: permissions ? JSON.stringify(permissions) : null
     }
@@ -108,7 +109,7 @@ export async function PATCH(
     })
 
   } catch (error) {
-    console.error('Update User Role API Error:', error)
+    logger.error('Update User Role API Error', { error })
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

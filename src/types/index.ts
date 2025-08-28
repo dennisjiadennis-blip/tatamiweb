@@ -6,7 +6,7 @@ export interface Master {
   profileVideo?: string
   heroImage?: string
   introVideo?: string
-  storyContent?: any
+  storyContent?: Record<string, unknown>
   topClips?: string[]
   missionCard?: MissionCard
   hasTripProduct: boolean
@@ -46,7 +46,7 @@ export interface Contribution {
   userId: string
   type: ContributionType
   value: number
-  metadata?: any
+  metadata?: Record<string, unknown>
   createdAt: Date
 }
 
@@ -78,7 +78,7 @@ export interface Content {
   title: string
   slug: string
   excerpt?: string
-  content: any
+  content: Record<string, unknown>
   coverImage?: string
   status: ContentStatus
   type: ContentType
@@ -126,7 +126,7 @@ export interface APIError {
   error: {
     code: string
     message: string
-    details?: any
+    details?: Record<string, unknown>
   }
 }
 
@@ -166,7 +166,7 @@ export interface SuspenseTagline {
 export interface DossierSection {
   id: string
   title: string
-  content: any
+  content: Record<string, unknown>
   order: number
 }
 
