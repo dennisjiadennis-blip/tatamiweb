@@ -295,24 +295,36 @@ button, input, select, textarea {
   }
 }
 
+/* slogan红色文字样式 - 强制覆盖 */
+.slogan-red-text {
+  color: #FF0000 !important;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 50px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 0, 0.6) !important;
+  animation: redGlow 3s ease-in-out infinite alternate !important;
+  font-family: var(--font-family-heading) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
+}
+
 /* 红色发光呼吸动画 - 非常强烈的效果 */
 @keyframes redGlow {
   0% {
-    color: #FF3B30;
+    color: #FF0000;
     text-shadow: 
-      0 0 30px rgba(255, 59, 48, 1),
-      0 0 50px rgba(255, 59, 48, 0.8),
-      0 0 80px rgba(255, 59, 48, 0.6),
+      0 0 30px rgba(255, 0, 0, 1),
+      0 0 50px rgba(255, 0, 0, 0.8),
+      0 0 80px rgba(255, 0, 0, 0.6),
       0 2px 8px rgba(0, 0, 0, 0.9),
       0 4px 16px rgba(0, 0, 0, 0.7);
   }
   100% {
-    color: #FF1A00;
+    color: #CC0000;
     text-shadow: 
-      0 0 40px rgba(255, 59, 48, 1),
-      0 0 70px rgba(255, 59, 48, 0.9),
-      0 0 100px rgba(255, 59, 48, 0.7),
-      0 0 140px rgba(255, 26, 0, 0.5),
+      0 0 40px rgba(255, 0, 0, 1),
+      0 0 70px rgba(255, 0, 0, 0.9),
+      0 0 100px rgba(255, 0, 0, 0.7),
+      0 0 140px rgba(204, 0, 0, 0.5),
       0 2px 8px rgba(0, 0, 0, 0.9),
       0 4px 16px rgba(0, 0, 0, 0.7);
   }
