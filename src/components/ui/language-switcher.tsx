@@ -13,6 +13,7 @@ import {
 } from './dropdown-menu'
 import { Button } from './button'
 import { useLanguageSwitcher } from '@/i18n/hooks'
+import { useLanguagePreference } from '@/hooks/useLanguagePreference'
 import { cn } from '@/lib/utils'
 
 interface LanguageSwitcherProps {
@@ -24,10 +25,11 @@ export function LanguageSwitcher({ className, variant = 'default' }: LanguageSwi
   const pathname = usePathname()
   const router = useRouter()
   const { currentLocale, languages, getLanguageUrl, isCurrentLanguage } = useLanguageSwitcher()
+  const { switchLanguage } = useLanguagePreference(currentLocale)
 
   const handleLanguageChange = (locale: string) => {
-    const newUrl = getLanguageUrl(locale as any, pathname)
-    router.push(newUrl)
+    // 使用新的语言偏好hook，会自动保存到localStorage
+    switchLanguage(locale as 'en' | 'zh-TW' | 'ja')
   }
 
   const currentLanguage = languages.find(lang => lang.code === currentLocale)

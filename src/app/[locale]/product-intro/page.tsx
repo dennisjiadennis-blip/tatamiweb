@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCurrentLocale } from '@/i18n/hooks'
-import { OptimizedVideoPlayer } from '@/components/video/optimized-video-player'
+import CinematicPlayer from '@/components/CinematicPlayer'
 import { Icons } from '@/components/ui/icons'
 
 export default function ProductIntroPage() {
@@ -330,19 +330,9 @@ export default function ProductIntroPage() {
       >
         
         {/* 视频背景 */}
-        <OptimizedVideoPlayer
+        <CinematicPlayer
           src="/videos/faces/微笑.mp4"
           className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          controls={false}
-          enableQualitySelector={false}
-          enableAnalytics={false}
-          customControls={false}
-          preload={true}
-          onCanPlay={() => setIsVideoReady(true)}
         />
 
         {/* 交互控制界面 */}

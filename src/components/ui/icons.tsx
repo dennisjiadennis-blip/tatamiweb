@@ -28,6 +28,8 @@ import {
   MousePointer,
   Target,
   DollarSign,
+  Maximize,
+  Minimize,
   Copy,
   Edit,
   Trash,
@@ -53,6 +55,8 @@ export const Icons = {
   play: Play,
   pause: Pause,
   volume: Volume2,
+  volume2: Volume2,
+  volumeX: VolumeX,
   volumeOff: VolumeX,
   moreHorizontal: MoreHorizontal,
   search: Search,
@@ -69,6 +73,8 @@ export const Icons = {
   edit: Edit,
   trash: Trash,
   send: Send,
+  maximize: Maximize,
+  minimize: Minimize,
   google: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" {...props}>
       <path

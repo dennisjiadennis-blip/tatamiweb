@@ -245,19 +245,6 @@ button, input, select, textarea {
   background: var(--color-black);
 }
 
-.homepage-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;  /* 比现在小20% (100vw -> 80vw) */
-  height: 80vh; /* 比现在小20% (100vh -> 80vh) */
-  object-fit: cover;
-  opacity: 1;
-  transition: opacity var(--duration-cinematic) var(--ease-out);
-  border-radius: 8px; /* 添加轻微圆角 */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3); /* 添加阴影增强深度 */
-}
 
 .homepage-tagline {
   font-family: var(--font-serif) !important;
@@ -1393,4 +1380,331 @@ button, input, select, textarea {
     padding: 1rem;
     font-size: 1rem;
   }
+}
+
+/* ===============================================
+   Cinematic Player Styles
+   =============================================== */
+
+.cinematic-player {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-charcoal);
+  /* 16:9 标准电影纵横比 */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.player-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.controls-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.controls-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.controls-top {
+  margin-bottom: 1rem;
+}
+
+.timeline-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-parchment);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.timeline::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.timeline::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-parchment);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.time-display {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-parchment);
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.875rem;
+  min-width: 100px;
+}
+
+.controls-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--color-parchment);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.play-btn {
+  width: 48px;
+  height: 48px;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume-slider {
+  width: 80px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  height: 3px;
+  outline: none;
+  border-radius: 1.5px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-parchment);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-parchment);
+  cursor: pointer;
+  border: none;
+}
+
+/* 多语言字幕动画系统 */
+.subtitle-container {
+  position: absolute;
+  bottom: 20%; /* 位于控制面板上方 */
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.subtitle-text {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--color-parchment);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  animation: fadeInSubtitle 0.5s ease-in-out;
+  max-width: 80%;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeInSubtitle {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .cinematic-player {
+    border-radius: 4px;
+  }
+  
+  .controls-panel {
+    padding: 0.75rem;
+  }
+  
+  .control-btn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .play-btn {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .volume-control {
+    display: none; /* 隐藏音量控制以节省空间 */
+  }
+  
+  .subtitle-text {
+    font-size: 1.125rem;
+    padding: 0.5rem 1rem;
+    max-width: 90%;
+  }
+  
+  .time-display {
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+  
+  .controls-left {
+    gap: 0.75rem;
+  }
+}
+
+/* --- 首页开场动画增强样式 --- */
+.homepage-timeline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  overflow: hidden;
+}
+
+/* 炭灰色背景状态 */
+.homepage-timeline .absolute.inset-0 {
+  background-color: var(--color-charcoal);
+}
+
+/* 视频容器样式 */
+.homepage-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all var(--duration-cinematic) var(--ease-tension);
+}
+
+/* Logo容器增强 */
+.homepage-timeline .z-10 {
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.4);
+  transition: all var(--duration-cinematic) var(--ease-reveal);
+}
+
+/* 品牌阶段的视频缩放效果 */
+.homepage-timeline [data-phase="brand"] .homepage-video {
+  transform: scale(0.8) translateY(-80px);
+  border-radius: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* 确保按钮在所有阶段都可见 */
+.homepage-timeline button {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 进度指示器样式 */
+.homepage-timeline .bottom-20 {
+  z-index: 60;
+}
+
+/* 跳过按钮样式 */
+.homepage-timeline .top-8.right-8 {
+  z-index: 60;
+  color: rgba(244, 241, 234, 0.7);
+  transition: color var(--duration-fast) ease;
+}
+
+.homepage-timeline .top-8.right-8:hover {
+  color: var(--color-parchment);
 }
