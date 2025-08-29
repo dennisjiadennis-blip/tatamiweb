@@ -1,130 +1,231 @@
 {
   "navigation": {
     "home": "Home",
+    "philosophy": "Our Philosophy", 
     "masters": "Masters",
-    "philosophy": "Philosophy",
-    "content": "Content Center",
+    "content": "Content",
     "community": "Community",
     "profile": "Profile",
-    "signin": "Sign In",
-    "signIn": "Sign In"
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
   },
   "homepage": {
-    "hero": {
-      "title": "Deep conversations with Japanese masters",
-      "subtitle": "Connect across cultures through authentic dialogue",
-      "cta": "Begin Your Journey",
-      "loading": "Loading...",
-      "error": "Unable to load content"
+    "title": "Tatami Labs",
+    "subtitle": "The Journey to Weave a Story",
+    "description": "Connecting global minds with Japan's ultimate masters through deep conversation journeys",
+    "taglines": {
+      "joy": "What makes a master laugh after 40 years of dedication?",
+      "warmth": "Behind every gentle smile lies a profound story...",
+      "contemplation": "The weight of tradition sometimes brings tears...",
+      "moved": "When passion meets purpose, hearts are moved...",
+      "revelation": "Some discoveries change everything you thought you knew...",
+      "wonder": "The moment when the impossible becomes possible...",
+      "awe": "What secrets do the hands of a true master hold?"
     },
-    "glimpse": {
-      "phase": {
-        "loading": "Preparing your glimpse...",
-        "video": "Experience the moment...",
-        "reflection": "Reflect on what you've seen...",
-        "invitation": "Ready to go deeper?"
+    "enter": "Enter the Journey"
+  },
+  "masters": {
+    "title": "Japanese Masters",
+    "subtitle": "Meet Japan's Ultimate Masters",
+    "description": "Connect with Japan's ultimate masters through deep conversation journeys",
+    "viewProfile": "View Profile",
+    "bookJourney": "Book Journey",
+    "expressInterest": "Express Interest",
+    "generation": "{count}th Generation",
+    "yearsOfExperience": "{count} years of experience",
+    "noTripsAvailable": "No trips currently available",
+    "searchPlaceholder": "Search masters...",
+    "filters": {
+      "all": "All Masters",
+      "trips": "With Trips",
+      "conversations": "Conversations Only"
+    },
+    "tripAvailable": "Trip Available",
+    "noMastersFound": "No masters found matching your criteria.",
+    "clearFilters": "Clear Filters",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
+    }
+  },
+  "masterProfile": {
+    "sections": {
+      "encounter": "The Encounter",
+      "firstWords": "First Words", 
+      "deepExploration": "Deep Exploration",
+      "resonantMoments": "Resonant Moments",
+      "craftAndMission": "Craft & Mission",
+      "invitation": "The Invitation"
+    },
+    "watchIntro": "Watch Introduction",
+    "viewTopClips": "View Top Clips",
+    "learnMore": "Learn More",
+    "bookNow": "Book Now",
+    "interested": "I'm Interested"
+  },
+  "philosophy": {
+    "title": "Our Philosophy",
+    "subtitle": "Beyond Tourism, Into Truth",
+    "description": "We create genuine, equal dialogues - not performances. Participants are 'welcomed visitors,' not 'tourists,' engaging in authentic exchanges with masters. This is a 'spiritual restart.'",
+    "principles": {
+      "authenticity": {
+        "title": "Authentic Connection",
+        "description": "Real conversations, not staged performances"
       },
-      "actions": {
-        "continue": "Continue",
-        "explore": "Explore Master",
-        "restart": "See Another"
+      "equality": {
+        "title": "Equal Exchange", 
+        "description": "Masters and visitors meet as equals in dialogue"
+      },
+      "depth": {
+        "title": "Deep Understanding",
+        "description": "Moving beyond surface to discover profound truths"
+      },
+      "respect": {
+        "title": "Cultural Respect",
+        "description": "Honoring traditions while embracing new perspectives"
       }
     }
   },
+  "community": {
+    "title": "Community",
+    "subtitle": "A Global Network of Deep Thinkers",
+    "description": "Join a community of individuals passionate about meaningful dialogue and cultural exchange",
+    "joinCommunity": "Join Community",
+    "members": "{count} members",
+    "discussions": "{count} discussions",
+    "stories": "{count} stories shared",
+    "events": {
+      "joinEvent": "Join Event",
+      "eventFull": "Full",
+      "spots": "{available} / {total} spots"
+    }
+  },
+  "content": {
+    "title": "Content",
+    "subtitle": "Stories, Insights, and Discoveries",
+    "description": "Explore in-depth articles, interviews, and videos from our journeys",
+    "readMore": "Read More",
+    "watchNow": "Watch Now",
+    "categories": {
+      "all": "All",
+      "articles": "Articles",
+      "videos": "Videos", 
+      "interviews": "Interviews",
+      "stories": "Stories"
+    },
+    "publishedOn": "Published on {date}",
+    "readTime": "{minutes} min read"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Your Journey with Tatami Labs",
+    "interests": "My Interests",
+    "contributions": "My Contributions", 
+    "referrals": "Referrals",
+    "bookings": "Bookings",
+    "settings": "Settings",
+    "editProfile": "Edit Profile",
+    "changeLanguage": "Change Language"
+  },
   "auth": {
-    "signin": {
-      "title": "Sign In",
-      "description": "Continue your journey with Japanese masters",
-      "google": "Continue with Google",
-      "magic-link": "Send Magic Link"
-    },
-    "verify": {
-      "title": "Check Your Email",
-      "description": {
-        "with-email": "We've sent a magic link to",
-        "general": "We've sent you a magic link to sign in"
-      },
-      "step1": "Check your email inbox for the magic link",
-      "step2": "Click the link in the email to sign in",
-      "step3": "You'll be automatically redirected to your destination",
-      "note": {
-        "title": "Note:",
-        "spam": "Check your spam folder if you don't see the email",
-        "expire": "The magic link will expire in 10 minutes",
-        "security": "For security, the link can only be used once"
-      },
-      "back-signin": "Back to Sign In"
-    },
-    "error": {
-      "title": "Authentication Error",
-      "configuration": "There is a problem with the server configuration.",
-      "access-denied": "Access denied. You do not have permission to sign in.",
-      "verification": "The verification token has expired or has already been used.",
-      "oauth-signin": "There was an error with the OAuth provider.",
-      "oauth-callback": "There was an error processing the OAuth callback.",
-      "oauth-create-account": "Could not create account with OAuth provider.",
-      "email-create-account": "Could not create account with email provider.",
-      "callback": "There was an error in the callback URL.",
-      "oauth-account-not-linked": "This account is already linked to another authentication method.",
-      "email-signin": "Could not send email with magic link.",
-      "credentials-signin": "Invalid credentials provided.",
-      "session-required": "You must be signed in to access this page.",
-      "default": "An unexpected error occurred during authentication.",
-      "details": {
-        "title": "Error details:"
-      },
-      "suggestions": {
-        "title": "Try these solutions:",
-        "refresh": "Refresh the page and try again",
-        "browser": "Try using a different browser",
-        "cookies": "Make sure cookies are enabled",
-        "try-again": "Wait a moment and try again"
-      },
-      "try-again": "Try Again",
-      "support": {
-        "text": "Still having trouble?",
-        "link": "Contact Support"
-      }
-    },
-    "email": {
-      "address": "Email Address",
-      "placeholder": "Enter your email address"
-    },
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "signInWith": "Sign in with {provider}",
+    "magicLink": "Send magic link",
+    "emailSent": "Check your email for a magic link",
+    "welcome": "Welcome to Tatami Labs",
+    "welcomeBack": "Welcome back",
     "or": "or",
     "and": "and",
+    "back-home": "Back to Home",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email address"
+    },
     "terms": {
-      "text": "By signing in, you agree to our",
+      "text": "By continuing, you agree to our",
       "link": "Terms of Service"
     },
     "privacy": {
       "link": "Privacy Policy"
     },
-    "back-home": "← Back to Home"
+    "signin": {
+      "title": "Sign In",
+      "description": "Choose your preferred sign in method",
+      "google": "Continue with Google",
+      "email": "Continue with Email",
+      "emailPlaceholder": "Enter your email address",
+      "emailButton": "Send magic link",
+      "magic-link": "Send magic link",
+      "emailSent": "Check your email for a magic link",
+      "error": "Sign in failed. Please try again."
+    },
+    "verifyRequest": {
+      "title": "Check your email",
+      "description": "A sign in link has been sent to your email address.",
+      "emailSent": "Email sent to {email}"
+    },
+    "error": {
+      "title": "Authentication Error",
+      "description": "An error occurred during authentication.",
+      "backToSignIn": "Back to sign in"
+    }
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message", 
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "sending": "Sending...",
+    "sent": "Sent successfully",
+    "failed": "Failed to send. Please try again."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "The requested resource was not found.",
+    "unauthorized": "You need to sign in to access this resource.",
+    "forbidden": "You don't have permission to access this resource.",
+    "validation": "Please check your input and try again.",
+    "network": "Network error. Please check your connection."
+  },
+  "productIntro": {
+    "title": "TATAMI LABS",
+    "descriptionLines": [
+      "Tatami Labs offers profound Japanese cultural immersion, beyond simple sightseeing.",
+      "Through in-depth interviews, conversations, meals, and drinks with masters, you will truly understand the local culture and the stories behind them.",
+      "Co-create videos with masters, sharing ownership and revenue.",
+      "AI powers all video operations: multi-language generation, smart distribution, fully by AI Agents.",
+      "Our vision: a mutually rewarding ecosystem where everyone benefits."
+    ],
+    "coreConcept": "Content co-creation is the heart of this journey."
   },
   "common": {
     "loading": "Loading...",
-    "error": "Error",
-    "retry": "Try Again",
-    "success": "Success",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "close": "Close",
     "cancel": "Cancel",
-    "continue": "Continue",
-    "joinOurJourney": "JOIN OUR JOURNEY",
-    "journeySlogan": "THE JOURNEY TO LEAVE A STORY",
-    "back": "Back",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
     "next": "Next",
     "previous": "Previous",
-    "close": "Close",
-    "skipIntroduction": "Skip Introduction",
-    "enterHeartJourney": "Enter Heart's Journey"
+    "back": "Back",
+    "submit": "Submit",
+    "continue": "Continue",
+    "skipIntroduction": "Skip Introduction"
   },
-  "productIntro": {
-    "title": "Welcome to Tatami Labs",
-    "descriptionLines": {
-      "0": "Tatami Labs offers profound Japanese cultural immersion, beyond simple sightseeing.",
-      "1": "Co-create videos with masters, sharing ownership and revenue.",
-      "2": "AI powers all video operations: multi-language generation, smart distribution, fully by AI Agents.",
-      "3": "Our vision: a mutually rewarding ecosystem where everyone benefits."
-    },
-    "coreConcept": "Content co-creation is the heart of this journey."
+  "meta": {
+    "title": "Tatami Labs - Deep Conversation Journeys with Japan's Masters",
+    "description": "Connect with Japan's ultimate masters through profound dialogue experiences. Discover the secrets behind centuries of dedication and craft.",
+    "keywords": "Japan masters, cultural exchange, deep conversation, traditional crafts, artisans, dialogue journey"
   }
 }

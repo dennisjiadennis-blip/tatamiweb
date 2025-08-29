@@ -74,6 +74,22 @@ export default function MastersPage() {
     }
   }
 
+  // Use proper next-intl translation keys
+  const mastersT = useTranslations('masters')
+  
+  // Helper function to get localized master page text
+  const getLocalizedText = useCallback((key: string) => {
+    const textMap = {
+      title: locale === 'zh-TW' ? '情報檔案' : locale === 'ja' ? 'インテリジェンス・ドシエ' : 'Intelligence Dossier',
+      subtitle: mastersT('subtitle'),
+      allMasters: mastersT('filters.all'),
+      withTrips: mastersT('filters.trips'), 
+      noMastersFound: mastersT('noMastersFound'),
+      clearFilters: mastersT('clearFilters')
+    }
+    return textMap[key as keyof typeof textMap] || key
+  }, [locale, mastersT])
+
   useEffect(() => {
     fetchMasters(search, filter, page)
   }, [search, filter, page])
@@ -103,22 +119,6 @@ export default function MastersPage() {
     setFilter(newFilter)
     setPage(1)
   }
-
-  // Use proper next-intl translation keys
-  const mastersT = useTranslations('masters')
-  
-  // Helper function to get localized master page text
-  const getLocalizedText = useCallback((key: string) => {
-    const textMap = {
-      title: locale === 'zh-TW' ? '情報檔案' : locale === 'ja' ? 'インテリジェンス・ドシエ' : 'Intelligence Dossier',
-      subtitle: mastersT('subtitle'),
-      allMasters: mastersT('filters.all'),
-      withTrips: mastersT('filters.trips'), 
-      noMastersFound: mastersT('noMastersFound'),
-      clearFilters: mastersT('clearFilters')
-    }
-    return textMap[key as keyof typeof textMap] || key
-  }, [locale, mastersT])
 
   return (
     <div className="masters-page-container">

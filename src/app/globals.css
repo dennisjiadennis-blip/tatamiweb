@@ -841,9 +841,15 @@ button, input, select, textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem; /* 移动端默认 padding */
   box-sizing: border-box; /* Include padding in aspect-ratio calculation */
   overflow: hidden; /* Hide any content overflow */
+}
+
+@media (min-width: 768px) {
+  .cinematic-content-frame {
+    padding: 2rem; /* 桌面端 padding */
+  }
 }
 
 /* Ensure content stays within the 16:9 frame */
@@ -891,7 +897,7 @@ button, input, select, textarea {
 /* JavaScript will dynamically set height based on 16:9 ratio,
    but we can set a default for visual consistency */
 .letterbox-top, .letterbox-bottom {
-  height: calc((100vh - (100vw / 16 * 9)) / 2); /* Calculate height for letterbox */
+  height: calc((100vh - (100vw * 9 / 16)) / 2); /* Calculate height for letterbox */
 }
 /* Adjust for very wide screens, might need more specific media queries */
 @media (min-aspect-ratio: 16/9) {

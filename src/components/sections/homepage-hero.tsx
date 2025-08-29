@@ -26,9 +26,6 @@ export function HomepageHero({ locale, country, className }: HomepageHeroProps) 
              'The Journey to Leave a Story'
   }
 
-  // 调试用 - 检查视频路径
-  console.log('Video path:', `/videos/faces/${videoData.videoFile}`)
-  console.log('Current phase:', currentPhase)
 
   useEffect(() => {
     // 启动时序控制
@@ -83,7 +80,7 @@ export function HomepageHero({ locale, country, className }: HomepageHeroProps) 
   }
 
   const handleJoinJourney = () => {
-    router.push(`/${locale}/product-intro`)
+    router.push(`/${locale}/cinematic-intro`)
   }
 
   if (isComplete) {
@@ -116,11 +113,11 @@ export function HomepageHero({ locale, country, className }: HomepageHeroProps) 
             exit={{ opacity: 0 }}
             className="absolute inset-0"
           >
-            {/* Video Layer */}
+            {/* Video Layer - 缩小30% */}
             <motion.div
-              initial={{ scale: 1, y: 0 }}
+              initial={{ scale: 0.7, y: 0 }}
               animate={{ 
-                scale: currentPhase === 'brand' ? 0.8 : 1,
+                scale: currentPhase === 'brand' ? 0.5 : 0.7,
                 y: currentPhase === 'brand' ? -80 : 0,
                 transition: { duration: currentPhase === 'brand' ? 1.0 : 0.8 }
               }}
@@ -167,17 +164,28 @@ export function HomepageHero({ locale, country, className }: HomepageHeroProps) 
                      'The Journey to Leave a Story'}
                   </p>
                   
-                  <motion.button
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    onClick={handleSkip}
-                    className="bg-white text-black hover:bg-gray-100 font-serif text-lg px-8 py-4 mt-8 rounded-sm border-none transition-colors duration-300 shadow-lg"
-                  >
-                    {locale === 'zh-TW' ? '開始旅程' : 
-                     locale === 'ja' ? '旅を始める' : 
-                     'Enter the Journey'}
-                  </motion.button>
+                  <div className="flex flex-col space-y-4 mt-8">
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8, duration: 0.8 }}
+                      onClick={handleJoinJourney}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-serif text-lg px-8 py-4 rounded-sm border-none transition-colors duration-300 shadow-lg"
+                    >
+                      Join Us
+                    </motion.button>
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.0, duration: 0.8 }}
+                      onClick={handleSkip}
+                      className="bg-white text-black hover:bg-gray-100 font-serif text-lg px-8 py-4 rounded-sm border-none transition-colors duration-300 shadow-lg"
+                    >
+                      {locale === 'zh-TW' ? '開始旅程' : 
+                       locale === 'ja' ? '旅を始める' : 
+                       'Enter the Journey'}
+                    </motion.button>
+                  </div>
                 </motion.div>
               </motion.div>
             )}

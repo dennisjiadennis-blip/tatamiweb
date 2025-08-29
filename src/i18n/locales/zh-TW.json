@@ -1,131 +1,258 @@
 {
+  "common": {
+    "loading": "載入中...",
+    "error": "發生錯誤",
+    "retry": "重試",
+    "close": "關閉",
+    "cancel": "取消",
+    "confirm": "確認",
+    "save": "保存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "search": "搜尋",
+    "filter": "篩選",
+    "sort": "排序",
+    "next": "下一步",
+    "previous": "上一步",
+    "back": "返回",
+    "submit": "提交"
+  },
   "navigation": {
     "home": "首頁",
+    "philosophy": "我們的理念",
     "masters": "達人",
-    "philosophy": "理念",
     "content": "內容中心",
-    "community": "社群",
+    "community": "社區",
     "profile": "個人檔案",
-    "signin": "登入",
-    "signIn": "登入"
+    "admin": "管理",
+    "signIn": "登入",
+    "signOut": "登出"
   },
   "homepage": {
-    "hero": {
-      "title": "與日本達人的深度對話",
-      "subtitle": "透過真實的對話跨越文化藩籬",
-      "cta": "開始你的旅程",
-      "loading": "載入中...",
-      "error": "無法載入內容"
+    "title": "榻榻米實驗室",
+    "subtitle": "匠心解密之旅",
+    "description": "通過深度對談旅行，連接全球用戶與日本的極致之人",
+    "taglines": {
+      "joy": "什麼讓一位四十年的匠人開懷大笑？",
+      "warmth": "每個溫和的微笑背後，都有一個深刻的故事...",
+      "contemplation": "傳統的重量有時會帶來眼淚...",
+      "moved": "當熱情與使命相遇，心靈被觸動...",
+      "revelation": "有些發現改變了你以為知道的一切...",
+      "wonder": "當不可能變成可能的瞬間...",
+      "awe": "真正的匠人之手握著什麼秘密？"
     },
-    "glimpse": {
-      "phase": {
-        "loading": "正在準備你的一瞥...",
-        "video": "體驗這個時刻...",
-        "reflection": "回味你所看到的...",
-        "invitation": "準備更深入探索了嗎？"
+    "enter": "開始旅程"
+  },
+  "masters": {
+    "title": "日本達人",
+    "subtitle": "遇見日本的極致之人",
+    "description": "通過深度對談旅行，連接全球用戶與日本的極致之人",
+    "viewProfile": "查看檔案",
+    "bookJourney": "預訂旅程",
+    "expressInterest": "表達興趣",
+    "generation": "第{count}代",
+    "yearsOfExperience": "{count}年經驗",
+    "noTripsAvailable": "暫無可預訂行程",
+    "searchPlaceholder": "搜尋達人...",
+    "filters": {
+      "all": "所有達人",
+      "trips": "有旅程",
+      "conversations": "僅對談"
+    },
+    "tripAvailable": "有旅程",
+    "noMastersFound": "找不到符合條件的達人。",
+    "clearFilters": "清除篩選",
+    "pagination": {
+      "previous": "上一頁",
+      "next": "下一頁",
+      "pageOf": "第 {page} 頁，共 {totalPages} 頁"
+    }
+  },
+  "masterProfile": {
+    "sections": {
+      "encounter": "邂逅",
+      "firstWords": "初語",
+      "deepExploration": "深度探尋",
+      "resonantMoments": "共鳴時刻",
+      "craftAndMission": "技藝與使命",
+      "invitation": "迴響與邀請"
+    },
+    "watchIntro": "觀看介紹",
+    "viewTopClips": "觀看精彩片段",
+    "learnMore": "了解更多",
+    "bookNow": "立即預訂",
+    "interested": "我有興趣"
+  },
+  "philosophy": {
+    "title": "我們的理念",
+    "subtitle": "超越觀光，走向真誠",
+    "description": "我們創造真誠、平等的對話，而非表演。參與者是「被迎接的訪問者」，而非「觀光客」，與達人進行真實的交流。這是一種「精神的再起動」。",
+    "principles": {
+      "authenticity": {
+        "title": "真誠連接",
+        "description": "真實的對話，而非刻意安排的表演"
       },
-      "actions": {
-        "continue": "繼續",
-        "explore": "探索達人",
-        "restart": "看另一個"
+      "equality": {
+        "title": "平等交流",
+        "description": "達人與訪問者作為平等的對話者相遇"
+      },
+      "depth": {
+        "title": "深度理解",
+        "description": "超越表面，發現深層的真理"
+      },
+      "respect": {
+        "title": "文化尊重",
+        "description": "尊重傳統的同時擁抱新的視角"
       }
     }
   },
+  "community": {
+    "title": "社區",
+    "subtitle": "全球深度思考者網絡",
+    "description": "加入一個熱衷於有意義對話和文化交流的社群",
+    "joinCommunity": "加入社區",
+    "members": "{count} 位成員",
+    "discussions": "{count} 個討論",
+    "stories": "分享了 {count} 個故事",
+    "events": {
+      "joinEvent": "參加活動",
+      "eventFull": "已滿",
+      "spots": "{available} / {total} 席位"
+    }
+  },
+  "content": {
+    "title": "內容中心",
+    "subtitle": "故事、洞察與發現",
+    "description": "探索來自我們旅程的深度文章、訪談和視頻",
+    "readMore": "閱讀更多",
+    "watchNow": "立即觀看",
+    "categories": {
+      "all": "全部",
+      "articles": "文章",
+      "videos": "視頻",
+      "interviews": "訪談",
+      "stories": "故事"
+    },
+    "publishedOn": "發布於 {date}",
+    "readTime": "{minutes} 分鐘閱讀"
+  },
+  "profile": {
+    "title": "我的檔案",
+    "subtitle": "您與榻榻米實驗室的旅程",
+    "interests": "我的興趣",
+    "contributions": "我的貢獻",
+    "referrals": "推薦",
+    "bookings": "預訂",
+    "settings": "設定",
+    "editProfile": "編輯檔案",
+    "changeLanguage": "更改語言"
+  },
   "auth": {
-    "signin": {
-      "title": "登入",
-      "description": "繼續你與日本達人的旅程",
-      "google": "使用 Google 繼續",
-      "magic-link": "發送魔法連結"
-    },
-    "verify": {
-      "title": "查看你的電子郵件",
-      "description": {
-        "with-email": "我們已經發送魔法連結至",
-        "general": "我們已經發送魔法連結給你進行登入"
-      },
-      "step1": "檢查你的電子郵件收件匣中的魔法連結",
-      "step2": "點擊郵件中的連結進行登入",
-      "step3": "你將自動重新導向到你的目的地",
-      "note": {
-        "title": "注意：",
-        "spam": "如果沒有看到郵件，請檢查垃圾郵件資料夾",
-        "expire": "魔法連結將在 10 分鐘後過期",
-        "security": "為了安全起見，連結只能使用一次"
-      },
-      "back-signin": "回到登入頁面"
-    },
-    "error": {
-      "title": "認證錯誤",
-      "configuration": "伺服器設定出現問題。",
-      "access-denied": "拒絕存取。你沒有登入的權限。",
-      "verification": "驗證令牌已過期或已被使用。",
-      "oauth-signin": "OAuth 提供者發生錯誤。",
-      "oauth-callback": "處理 OAuth 回調時發生錯誤。",
-      "oauth-create-account": "無法使用 OAuth 提供者創建帳戶。",
-      "email-create-account": "無法使用電子郵件提供者創建帳戶。",
-      "callback": "回調 URL 發生錯誤。",
-      "oauth-account-not-linked": "此帳戶已連結到另一種認證方法。",
-      "email-signin": "無法發送包含魔法連結的電子郵件。",
-      "credentials-signin": "提供的憑證無效。",
-      "session-required": "你必須登入才能存取此頁面。",
-      "default": "認證過程中發生意外錯誤。",
-      "details": {
-        "title": "錯誤詳情："
-      },
-      "suggestions": {
-        "title": "嘗試以下解決方案：",
-        "refresh": "重新整理頁面並重試",
-        "browser": "嘗試使用不同的瀏覽器",
-        "cookies": "確保已啟用 cookies",
-        "try-again": "稍等片刻後重試"
-      },
-      "try-again": "重試",
-      "support": {
-        "text": "仍有問題？",
-        "link": "聯絡支援"
-      }
-    },
-    "email": {
-      "address": "電子郵件地址",
-      "placeholder": "輸入你的電子郵件地址"
-    },
+    "signIn": "登入",
+    "signUp": "註冊",
+    "signOut": "登出",
+    "signInWith": "使用 {provider} 登入",
+    "magicLink": "發送魔法連結",
+    "emailSent": "請查看您的郵箱中的魔法連結",
+    "welcome": "歡迎來到榻榻米實驗室",
+    "welcomeBack": "歡迎回來",
     "or": "或",
     "and": "和",
+    "back-home": "返回首頁",
+    "email": {
+      "label": "電子郵件",
+      "placeholder": "輸入您的電子郵件地址"
+    },
     "terms": {
-      "text": "登入即表示你同意我們的",
+      "text": "繼續即表示您同意我們的",
       "link": "服務條款"
     },
     "privacy": {
       "link": "隱私政策"
     },
-    "back-home": "← 回到首頁"
+    "signin": {
+      "title": "登入",
+      "description": "選擇您偏好的登入方式",
+      "google": "使用 Google 繼續",
+      "email": "使用電子郵件繼續",
+      "emailPlaceholder": "輸入您的電子郵件地址",
+      "emailButton": "發送魔法連結",
+      "magic-link": "發送魔法連結",
+      "emailSent": "請查看您的郵箱中的魔法連結",
+      "error": "登入失敗，請重試。"
+    },
+    "verifyRequest": {
+      "title": "檢查您的電子郵件",
+      "description": "登入連結已發送到您的電子郵件地址。",
+      "emailSent": "郵件已發送至 {email}"
+    },
+    "error": {
+      "title": "認證錯誤",
+      "description": "認證過程中發生錯誤。",
+      "backToSignIn": "返回登入"
+    }
+  },
+  "forms": {
+    "name": "姓名",
+    "email": "電子郵件",
+    "message": "訊息",
+    "required": "此欄位為必填",
+    "invalidEmail": "請輸入有效的電子郵件地址",
+    "sending": "發送中...",
+    "sent": "發送成功",
+    "failed": "發送失敗，請重試"
+  },
+  "errors": {
+    "generic": "發生錯誤，請重試。",
+    "notFound": "找不到請求的資源。",
+    "unauthorized": "需要登入才能訪問此資源。",
+    "forbidden": "您沒有權限訪問此資源。",
+    "validation": "請檢查您的輸入並重試。",
+    "network": "網絡錯誤，請檢查您的連接。"
+  },
+  "productIntro": {
+    "title": "榻榻米實驗室",
+    "descriptionLines": [
+      "Tatami Labs 提供深度日本文化體驗，告別傳統旅遊。",
+      "您將透過與達人的深度訪談、交流、飯局、酒局等形式，用心去理解當地文化與達人背後的故事。",
+      "與達人共創視頻，共享內容所有權與收益。",
+      "AI 驅動視頻運營：多語言生成、智能推送，全程由 AI Agent 實施。",
+      "我們的目標是讓每位參與者都受益，共建共贏生態。"
+    ],
+    "coreConcept": "內容共創，是這場旅程的核心。"
+  },
+  "masters": {
+    "subtitle": "與日本極致匠人的深度對話之旅",
+    "filters": {
+      "all": "所有匠人",
+      "trips": "含旅程"
+    },
+    "noMastersFound": "未找到符合條件的匠人",
+    "clearFilters": "清除所有篩選"
   },
   "common": {
     "loading": "載入中...",
-    "error": "錯誤",
+    "error": "發生錯誤",
     "retry": "重試",
-    "success": "成功",
-    "cancel": "取消",
-    "continue": "繼續",
-    "back": "返回",
-    "next": "下一個",
-    "previous": "上一個",
     "close": "關閉",
-    "skipIntroduction": "跳過介紹",
-    "enterHeartJourney": "進入心的旅行",
+    "cancel": "取消",
+    "confirm": "確認",
+    "save": "儲存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "search": "搜尋",
+    "filter": "篩選",
+    "sort": "排序",
+    "next": "下一步",
+    "previous": "上一步",
+    "back": "返回",
+    "submit": "提交",
     "continue": "繼續",
-    "joinOurJourney": "加入我們的旅程",
-    "journeySlogan": "留下故事的旅程"
+    "skipIntroduction": "跳過介紹"
   },
-  "productIntro": {
-    "title": "歡迎來到 Tatami Labs",
-    "descriptionLines": {
-      "0": "Tatami Labs 提供深度日本文化體驗，告別傳統旅遊。",
-      "1": "與達人共創視頻，共享內容所有權與收益。",
-      "2": "AI 驅動視頻運營：多語言生成、智能推送，全程由 AI Agent 實施。",
-      "3": "我們的目標是讓每位參與者都受益，共建共贏生態。"
-    },
-    "coreConcept": "內容共創，是這場旅程的核心。"
+  "meta": {
+    "title": "榻榻米實驗室 - 與日本匠人的深度對談之旅",
+    "description": "通過深度對話體驗與日本的極致之人連接。發現世紀傳承的匠心秘密。",
+    "keywords": "日本匠人, 文化交流, 深度對談, 傳統工藝, 職人, 對話之旅"
   }
 }

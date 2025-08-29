@@ -202,15 +202,6 @@
     ],
     "coreConcept": "The Journey to Leave a Story"
   },
-  "masters": {
-    "subtitle": "Deep dialogue journeys with Japan's ultimate masters",
-    "filters": {
-      "all": "All Masters",
-      "trips": "With Trips"
-    },
-    "noMastersFound": "No masters found matching your criteria",
-    "clearFilters": "Clear All Filters"
-  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",
@@ -229,8 +220,7 @@
     "back": "Back",
     "submit": "Submit",
     "continue": "Continue",
-    "skipIntroduction": "Skip Introduction",
-    "joinOurJourney": "Join Our Journey"
+    "skipIntroduction": "Skip Introduction"
   },
   "meta": {
     "title": "Tatami Labs - Deep Conversation Journeys with Japan's Masters",
