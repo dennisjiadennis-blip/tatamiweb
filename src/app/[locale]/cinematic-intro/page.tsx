@@ -98,7 +98,7 @@ export default function CinematicIntroPage() {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full h-screen overflow-hidden bg-black" style={{margin: 0, padding: 0}}>
       {/* 视频背景 */}
       <video
         className={`absolute inset-0 w-full h-full object-cover z-0 transition-all duration-1000 ${
@@ -108,6 +108,7 @@ export default function CinematicIntroPage() {
         loop
         muted
         playsInline
+        style={{margin: 0, padding: 0}}
       >
         <source src="/videos/faces/大笑.mp4" type="video/mp4" />
         <source src="/videos/大笑.mp4" type="video/mp4" />
@@ -116,103 +117,137 @@ export default function CinematicIntroPage() {
       {/* 渐变叠加 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-5" />
 
-      {/* 全屏内容容器 - 使用最简单的flex居中 */}
-      <div className="fixed inset-0 z-10 flex items-center justify-center">
-        <div className="text-center">
-          <AnimatePresence mode="wait">
-            {/* 标题阶段 */}
-            {currentPhase === 'title' && (
-              <motion.h1
-                key="title"
-                className="font-bold tracking-[0.2em] text-white drop-shadow-2xl text-center"
-                style={{
-                  fontSize: 'clamp(4rem, 15vw, 16rem)'
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              >
-                {content.title}
-              </motion.h1>
-            )}
+      {/* 绝对居中容器 - 强制所有文本完美居中 */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 20,
+          pointerEvents: 'none'
+        }}
+      >
+        <AnimatePresence mode="wait">
+          {/* 标题阶段 */}
+          {currentPhase === 'title' && (
+            <motion.h1
+              key="title"
+              className="font-bold tracking-[0.2em] drop-shadow-2xl"
+              style={{
+                fontSize: 'clamp(2rem, 7.5vw, 8rem)',
+                color: '#60a5fa',
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+                margin: 0,
+                padding: 0,
+                pointerEvents: 'none'
+              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              {content.title}
+            </motion.h1>
+          )}
 
-            {/* 描述阶段 - 逐行显示 */}
-            {currentPhase === 'description' && currentLine > 0 && (
-              <motion.div
-                key={`desc-${currentLine}`}
-                className="text-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 1 }}
-              >
-                {content.lines.slice(0, currentLine).map((line, index) => (
-                  <motion.p
-                    key={index}
-                    className="text-white mb-4 font-light leading-tight drop-shadow-lg text-center"
-                    style={{
-                      fontSize: 'clamp(1.5rem, 6vw, 6rem)'
-                    }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.2, duration: 0.8 }}
-                  >
-                    {line}
-                  </motion.p>
-                ))}
-              </motion.div>
-            )}
-
-            {/* 核心理念阶段 */}
-            {currentPhase === 'concept' && (
-              <motion.p
-                key="concept"
-                className="font-bold text-red-400 leading-tight text-center"
-                style={{
-                  fontSize: 'clamp(2rem, 10vw, 10rem)',
-                  textShadow: '0 0 60px rgba(239, 68, 68, 0.9), 0 0 120px rgba(239, 68, 68, 0.7)'
-                }}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 1.2 }}
-              >
-                {content.concept}
-              </motion.p>
-            )}
-
-            {/* 按钮阶段 */}
-            {currentPhase === 'buttons' && (
-              <motion.div
-                key="buttons"
-                className="space-y-8 text-center"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <button
-                  onClick={handleContinue}
-                  className="bg-white text-black hover:bg-gray-200 font-bold text-2xl px-16 py-6 rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
+          {/* 描述阶段 - 逐行显示 */}
+          {currentPhase === 'description' && currentLine > 0 && (
+            <div
+              key={`desc-container-${currentLine}`}
+              style={{
+                textAlign: 'center',
+                width: '100vw',
+                maxWidth: '80vw',
+                pointerEvents: 'none'
+              }}
+            >
+              {content.lines.slice(0, currentLine).map((line, index) => (
+                <motion.p
+                  key={`${currentLine}-${index}`}
+                  className="font-light leading-tight drop-shadow-lg"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 3vw, 3rem)',
+                    color: '#60a5fa',
+                    textAlign: 'center',
+                    display: 'block',
+                    margin: '0 auto 1rem auto',
+                    width: '100%'
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.2, duration: 0.8 }}
                 >
-                  {locale === 'zh-TW' ? '繼續 →' : 
-                   locale === 'ja' ? '続ける →' : 
-                   'Continue →'}
+                  {line}
+                </motion.p>
+              ))}
+            </div>
+          )}
+
+          {/* 核心理念阶段 */}
+          {currentPhase === 'concept' && (
+            <motion.p
+              key="concept"
+              className="font-bold leading-tight"
+              style={{
+                fontSize: 'clamp(1rem, 5vw, 5rem)',
+                color: '#60a5fa',
+                textAlign: 'center',
+                width: '100vw',
+                maxWidth: '80vw',
+                margin: 0,
+                padding: '0 2rem',
+                textShadow: '0 0 60px rgba(96, 165, 250, 0.9), 0 0 120px rgba(96, 165, 250, 0.7)',
+                pointerEvents: 'none'
+              }}
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 1.2 }}
+            >
+              {content.concept}
+            </motion.p>
+          )}
+
+          {/* 按钮阶段 */}
+          {currentPhase === 'buttons' && (
+            <motion.div
+              key="buttons"
+              className="space-y-8"
+              style={{
+                textAlign: 'center',
+                pointerEvents: 'auto'
+              }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <button
+                onClick={handleContinue}
+                className="bg-white text-black hover:bg-gray-200 font-bold text-2xl px-16 py-6 rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
+              >
+                {locale === 'zh-TW' ? '繼續 →' : 
+                 locale === 'ja' ? '続ける →' : 
+                 'Continue →'}
+              </button>
+              <div>
+                <button
+                  onClick={() => router.push(`/${locale}/masters`)}
+                  className="text-gray-300 hover:text-white transition-colors text-xl block mx-auto"
+                >
+                  {locale === 'zh-TW' ? '跳過介紹 →' : 
+                   locale === 'ja' ? 'イントロをスキップ →' : 
+                   'Skip Introduction →'}
                 </button>
-                <div>
-                  <button
-                    onClick={() => router.push(`/${locale}/masters`)}
-                    className="text-gray-300 hover:text-white transition-colors text-xl block mx-auto"
-                  >
-                    {locale === 'zh-TW' ? '跳過介紹 →' : 
-                     locale === 'ja' ? 'イントロをスキップ →' : 
-                     'Skip Introduction →'}
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
     </div>
