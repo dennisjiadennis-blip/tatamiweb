@@ -187,6 +187,32 @@ export default function ProductIntroPage() {
             </motion.div>
           )}
         </AnimatePresence>
+        
+        {/* 新增蓝色 Masters List 按钮 - 页面底部淡入 */}
+        <AnimatePresence>
+          {currentPhase === 'buttons' && (
+            <motion.div
+              key="masters-list-button"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: (BUTTONS_APPEAR_DELAY + 1000) / 1000, duration: 0.8, ease: "easeOut" }}
+            >
+              <Button
+                onClick={() => router.push(`/${locale}/masters`)}
+                className="bg-transparent border-2 px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-blue-600/10 shadow-lg"
+                style={{ 
+                  color: 'var(--color-subtitle-blue)',
+                  borderColor: 'var(--color-subtitle-blue)'
+                }}
+              >
+                {locale === 'zh-TW' ? '大師名單' : 
+                 locale === 'ja' ? 'マスターリスト' : 
+                 'Masters List'}
+              </Button>
+            </motion.div>
+          )}
+        </AnimatePresence>
           </motion.div>
         </div>
       </div>

@@ -16,19 +16,27 @@ export default function HomePage() {
   
   // 调试信息
   console.log('Homepage current phase:', phase, 'locale:', locale)
+  
+  useEffect(() => {
+    console.log('Phase changed to:', phase)
+  }, [phase])
 
   useEffect(() => {
+    console.log('Setting up timers...')
     // 1. 首屏进入，淡入视频
     const videoTimer = setTimeout(() => {
+      console.log('Video timer triggered, setting phase to video')
       setPhase('video')
     }, 500) // 0.5秒延迟后显示视频
 
     // 2. 视频播放1.5秒后，UI元素出现（缩短等待时间）
     const uiTimer = setTimeout(() => {
+      console.log('UI timer triggered, setting phase to interactive')
       setPhase('interactive')
     }, 2000) // 0.5s + 1.5s
 
     return () => {
+      console.log('Cleaning up timers')
       clearTimeout(videoTimer)
       clearTimeout(uiTimer)
     }
@@ -40,7 +48,7 @@ export default function HomePage() {
   }
 
   const handleJoinJourney = () => {
-    // 4. 用户点击蓝色按钮 → 进入产品介绍页
+    // 4. 用户点击蓝色按钮 → 进入产品介绍页面
     console.log('Navigating to product-intro page, locale:', locale)
     router.push(`/${locale}/product-intro`)
   }
@@ -117,24 +125,28 @@ export default function HomePage() {
       </AnimatePresence>
 
       <AnimatePresence>
-        {/* 3. 视频结束后出现红色 SLOGAN */}
+        {/* 3. 视频结束后直接显示蓝色按钮，不显示红色slogan */}
         {phase === 'slogan' && (
-          <motion.h1
-            key="slogan"
-            className="absolute text-center font-bold uppercase tracking-wide"
-            style={{ 
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-              color: 'var(--color-title-red)',
-              textShadow: '0 0 30px rgba(255, 0, 0, 1), 0 0 50px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 0, 0.6)'
-            }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          <motion.div
+            key="journey-button"
+            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
-            {locale === 'zh-TW' ? '編織故事的旅程' : 
-             locale === 'ja' ? '物語を紡ぐ旅' : 
-             'The Journey to Weave a Story'}
-          </motion.h1>
+            <Button
+              onClick={handleJoinJourney}
+              className="bg-transparent border-2 px-8 py-3 text-lg font-medium transition-all duration-300 hover:bg-blue-600/10 shadow-lg"
+              style={{ 
+                color: 'var(--color-subtitle-blue)',
+                borderColor: 'var(--color-subtitle-blue)'
+              }}
+            >
+              {locale === 'zh-TW' ? '加入旅程' : 
+               locale === 'ja' ? '旅に参加' : 
+               'Join the Journey'}
+            </Button>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
