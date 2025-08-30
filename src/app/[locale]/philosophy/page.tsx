@@ -86,7 +86,7 @@ export default function PhilosophyPage() {
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
             fontWeight: 700,
-            color: 'var(--color-parchment)',
+            color: 'var(--color-title-red)', // 主标题红色
             marginBottom: 'calc(var(--base-spacing) * 2)',
             textShadow: '0 0 10px rgba(0,0,0,0.5)'
           }}>
@@ -97,7 +97,7 @@ export default function PhilosophyPage() {
           <p style={{
             fontFamily: 'var(--font-family-body)',
             fontSize: '1.2rem',
-            color: 'var(--color-text-secondary)',
+            color: 'var(--color-subtitle-blue)', // 副标题蓝色
             maxWidth: '600px',
             margin: '0 auto',
             lineHeight: 1.7
@@ -157,7 +157,7 @@ export default function PhilosophyPage() {
           <p style={{
             fontFamily: 'var(--font-family-body)',
             fontSize: '1.3rem',
-            color: 'var(--color-parchment)',
+            color: 'var(--color-content-white)', // 内容文字白色
             fontStyle: 'italic',
             maxWidth: '500px',
             margin: '0 auto calc(var(--base-spacing) * 4)',

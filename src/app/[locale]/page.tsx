@@ -10,9 +10,12 @@ import { Button } from '@/components/ui/button'
 export default function HomePage() {
   const locale = useCurrentLocale()
   const router = useRouter()
-  const commonT = useTranslations('common')
+  // const commonT = useTranslations('common') // 临时移除，使用直接翻译
   
   const [phase, setPhase] = useState<'loading' | 'video' | 'slogan' | 'interactive'>('loading')
+  
+  // 调试信息
+  console.log('Homepage current phase:', phase, 'locale:', locale)
 
   useEffect(() => {
     // 1. 首屏进入，淡入视频
@@ -20,10 +23,10 @@ export default function HomePage() {
       setPhase('video')
     }, 500) // 0.5秒延迟后显示视频
 
-    // 2. 视频播放3秒后，UI元素出现
+    // 2. 视频播放1.5秒后，UI元素出现（缩短等待时间）
     const uiTimer = setTimeout(() => {
       setPhase('interactive')
-    }, 3500) // 0.5s + 3s
+    }, 2000) // 0.5s + 1.5s
 
     return () => {
       clearTimeout(videoTimer)
@@ -38,6 +41,7 @@ export default function HomePage() {
 
   const handleJoinJourney = () => {
     // 4. 用户点击蓝色按钮 → 进入产品介绍页
+    console.log('Navigating to product-intro page, locale:', locale)
     router.push(`/${locale}/product-intro`)
   }
 
@@ -77,7 +81,8 @@ export default function HomePage() {
           <>
             <motion.div
               key="logo"
-              className="absolute top-8 left-8 text-white text-2xl font-bold"
+              className="absolute top-8 left-8 text-2xl font-bold"
+              style={{ color: 'var(--color-title-red)' }} // 主标题红色
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
@@ -96,9 +101,15 @@ export default function HomePage() {
               <Button
                 onClick={handleJoinJourney}
                 variant="outline"
-                className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3 text-lg font-medium"
+                className="border-2 px-8 py-3 text-lg font-medium transition-all duration-300"
+                style={{ 
+                  color: 'var(--color-subtitle-blue)',
+                  borderColor: 'var(--color-subtitle-blue)'
+                }}
               >
-                {commonT('joinOurJourney')}
+                {locale === 'zh-TW' ? '加入我們的旅程' : 
+                 locale === 'ja' ? '私たちの旅に参加' : 
+                 'Join Our Journey'}
               </Button>
             </motion.div>
           </>
@@ -110,13 +121,19 @@ export default function HomePage() {
         {phase === 'slogan' && (
           <motion.h1
             key="slogan"
-            className="absolute text-center text-red-500 font-bold uppercase tracking-wide slogan-red-text"
-            style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+            className="absolute text-center font-bold uppercase tracking-wide"
+            style={{ 
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              color: 'var(--color-title-red)',
+              textShadow: '0 0 30px rgba(255, 0, 0, 1), 0 0 50px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 0, 0.6)'
+            }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            {commonT('journeySlogan')}
+            {locale === 'zh-TW' ? '編織故事的旅程' : 
+             locale === 'ja' ? '物語を紡ぐ旅' : 
+             'The Journey to Weave a Story'}
           </motion.h1>
         )}
       </AnimatePresence>

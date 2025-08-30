@@ -18,7 +18,7 @@ export default function CinematicIntroPage() {
 
   // 多语言内容数据
   const content = {
-    title: "TATAMI LABS",
+    title: "TATAMI LABS", // 主标题
     lines: locale === 'zh-TW' ? [
       "與日本終極達人連結",
       "透過深刻的對話體驗",
@@ -34,10 +34,10 @@ export default function CinematicIntroPage() {
       "through profound dialogue experiences.",
       "Discover the secrets behind centuries", 
       "of dedication and craft."
-    ],
+    ], // 内容文字
     concept: locale === 'zh-TW' ? "留下故事的旅程" : 
              locale === 'ja' ? "物語を残す旅" : 
-             "The Journey to Leave a Story"
+             "The Journey to Leave a Story" // 副标题
   }
 
   // 精确的电影感时序控制
@@ -140,12 +140,13 @@ export default function CinematicIntroPage() {
               className="font-bold tracking-[0.2em] drop-shadow-2xl"
               style={{
                 fontSize: 'clamp(2rem, 7.5vw, 8rem)',
-                color: '#60a5fa',
+                color: 'var(--color-title-red)', // 主标题红色
                 textAlign: 'center',
                 whiteSpace: 'nowrap',
                 margin: 0,
                 padding: 0,
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                textShadow: '0 0 30px rgba(255, 0, 0, 1), 0 0 50px rgba(255, 0, 0, 0.8)'
               }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -173,7 +174,7 @@ export default function CinematicIntroPage() {
                   className="font-light leading-tight drop-shadow-lg"
                   style={{
                     fontSize: 'clamp(0.75rem, 3vw, 3rem)',
-                    color: '#60a5fa',
+                    color: 'var(--color-content-white)', // 内容文字白色
                     textAlign: 'center',
                     display: 'block',
                     margin: '0 auto 1rem auto',
@@ -196,7 +197,7 @@ export default function CinematicIntroPage() {
               className="font-bold leading-tight"
               style={{
                 fontSize: 'clamp(1rem, 5vw, 5rem)',
-                color: '#60a5fa',
+                color: 'var(--color-subtitle-blue)', // 副标题蓝色
                 textAlign: 'center',
                 width: '100vw',
                 maxWidth: '80vw',
@@ -238,7 +239,13 @@ export default function CinematicIntroPage() {
               <div>
                 <button
                   onClick={() => router.push(`/${locale}/masters`)}
-                  className="text-gray-300 hover:text-white transition-colors text-xl block mx-auto"
+                  className="transition-colors text-xl block mx-auto"
+                  style={{ 
+                    color: 'var(--color-content-white)', 
+                    opacity: 0.7 
+                  }}
+                  onMouseEnter={(e) => { e.target.style.opacity = '1' }}
+                  onMouseLeave={(e) => { e.target.style.opacity = '0.7' }}
                 >
                   {locale === 'zh-TW' ? '跳過介紹 →' : 
                    locale === 'ja' ? 'イントロをスキップ →' : 

@@ -15,7 +15,6 @@ export default function ProductIntroPage() {
   const router = useRouter()
   const locale = useCurrentLocale()
   const t = useTranslations('productIntro')
-  const commonT = useTranslations('common')
 
   const [currentPhase, setCurrentPhase] = useState<IntroPhase>('initial')
   const [currentLineIndex, setCurrentLineIndex] = useState(0)
@@ -30,15 +29,15 @@ export default function ProductIntroPage() {
   console.log('Description lines:', descriptionLines)
   console.log('Core concept:', coreConceptText)
 
-  // 动画时间控制常量 (单位: 毫秒) - 测试用缩短时间
-  const VIDEO_INITIAL_DELAY = 1000 // 视频播放1秒后文字出现
-  const TITLE_APPEAR_DURATION = 1000 // 标题淡入持续时间
-  const TITLE_HOLD_DURATION = 2000 // 标题停留时间
-  const DESCRIPTION_LINE_APPEAR_DURATION = 1000 // 每行描述淡入持续时间
-  const DESCRIPTION_LINE_HOLD_DURATION = 1500 // 每行描述停留时间
-  const CORE_CONCEPT_APPEAR_DURATION = 1000 // 核心理念淡入持续时间
-  const CORE_CONCEPT_HOLD_DURATION = 2000 // 核心理念停留时间
-  const BUTTONS_APPEAR_DELAY = 500 // 按钮淡入延迟
+  // 动画时间控制常量 (单位: 毫秒) - 减慢一倍的速度
+  const VIDEO_INITIAL_DELAY = 2000 // 视频播放2秒后文字出现
+  const TITLE_APPEAR_DURATION = 2000 // 标题淡入持续时间
+  const TITLE_HOLD_DURATION = 4000 // 标题停留时间
+  const DESCRIPTION_LINE_APPEAR_DURATION = 2000 // 每行描述淡入持续时间
+  const DESCRIPTION_LINE_HOLD_DURATION = 3000 // 每行描述停留时间
+  const CORE_CONCEPT_APPEAR_DURATION = 2000 // 核心理念淡入持续时间
+  const CORE_CONCEPT_HOLD_DURATION = 4000 // 核心理念停留时间
+  const BUTTONS_APPEAR_DELAY = 1000 // 按钮淡入延迟
 
   useEffect(() => {
     // 清理函数，防止组件卸载时定时器仍在运行
@@ -70,7 +69,7 @@ export default function ProductIntroPage() {
         // 逐行显示描述
         timeoutRef.current = setTimeout(() => {
           setCurrentLineIndex(prev => prev + 1)
-        }, DESCRIPTION_LINE_APPEAR_DURATION + DESCRIPTION_LINE_HOLD_DURATION) // 播放速度比现在慢1.5倍
+        }, DESCRIPTION_LINE_APPEAR_DURATION + DESCRIPTION_LINE_HOLD_DURATION) // 每行文字显示间隔已减慢一倍
       } else {
         // 描述显示完毕，进入核心理念阶段
         timeoutRef.current = setTimeout(() => {
@@ -177,13 +176,13 @@ export default function ProductIntroPage() {
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
               >
-                {commonT('continue')} <Icons.arrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+                {locale === 'zh-TW' ? '繼續' : locale === 'ja' ? '続行' : 'Continue'} <Icons.arrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
               </Button>
               <motion.button
                 onClick={() => router.push(`/${locale}/masters`)}
                 className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm flex items-center"
               >
-                {commonT('skipIntroduction')} <Icons.arrowRight className="ml-1 h-3 w-3" />
+                {locale === 'zh-TW' ? '跳過介紹' : locale === 'ja' ? 'イントロをスキップ' : 'Skip Introduction'} <Icons.arrowRight className="ml-1 h-3 w-3" />
               </motion.button>
             </motion.div>
           )}
